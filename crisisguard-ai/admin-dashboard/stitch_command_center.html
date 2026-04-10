@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>CrisisGuard AI | Obsidian Command</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#333539",
+                    "tertiary-fixed": "#7df4ff",
+                    "on-tertiary-fixed-variant": "#004f54",
+                    "on-secondary-container": "#ffe7e4",
+                    "secondary-fixed": "#ffdad6",
+                    "on-primary": "#002e6a",
+                    "surface-container-highest": "#333539",
+                    "surface-container-high": "#282a2e",
+                    "on-primary-container": "#00285d",
+                    "tertiary": "#00dbe9",
+                    "primary": "#adc6ff",
+                    "inverse-on-surface": "#2f3035",
+                    "on-secondary-fixed-variant": "#93000b",
+                    "tertiary-container": "#00a0aa",
+                    "secondary-container": "#d70016",
+                    "on-secondary": "#690005",
+                    "inverse-surface": "#e2e2e8",
+                    "background": "#111318",
+                    "inverse-primary": "#005ac2",
+                    "surface-container-low": "#1a1c20",
+                    "surface": "#111318",
+                    "outline": "#8c909f",
+                    "on-error-container": "#ffdad6",
+                    "on-error": "#690005",
+                    "error-container": "#93000a",
+                    "surface-container-lowest": "#0c0e12",
+                    "on-tertiary-fixed": "#002022",
+                    "on-secondary-fixed": "#410002",
+                    "tertiary-fixed-dim": "#00dbe9",
+                    "secondary": "#ffb4ab",
+                    "outline-variant": "#424754",
+                    "surface-bright": "#37393e",
+                    "error": "#ffb4ab",
+                    "secondary-fixed-dim": "#ffb4ab",
+                    "on-primary-fixed-variant": "#004395",
+                    "surface-container": "#1e2024",
+                    "on-primary-fixed": "#001a42",
+                    "primary-fixed-dim": "#adc6ff",
+                    "surface-tint": "#adc6ff",
+                    "on-tertiary-container": "#002f33",
+                    "on-surface": "#e2e2e8",
+                    "on-background": "#e2e2e8",
+                    "surface-dim": "#111318",
+                    "primary-fixed": "#d8e2ff",
+                    "on-tertiary": "#00363a",
+                    "primary-container": "#4d8eff",
+                    "on-surface-variant": "#c2c6d6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(30, 32, 36, 0.4);
+        backdrop-filter: blur(12px);
+      }
+      .critical-glow {
+        box-shadow: 0 0 15px rgba(215, 0, 22, 0.3);
+      }
+      .pulse-ring {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: .4; }
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body selection:bg-primary selection:text-on-primary">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#111318]/80 backdrop-blur-xl border-b border-[#424754]/15 shadow-2xl shadow-black/40 flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="text-[#adc6ff] hover:bg-[#282a2e] transition-colors active:scale-95 duration-200 p-2 rounded-lg">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="text-lg font-black tracking-widest text-[#adc6ff] font-['Space_Grotesk']">CRISISGUARD AI</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="text-[#adc6ff] hover:bg-[#282a2e] transition-colors active:scale-95 duration-200 p-2 rounded-lg relative">
+<span class="material-symbols-outlined">notifications_active</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-secondary rounded-full pulse-ring"></span>
+</button>
+</div>
+</header>
+<main class="pt-16 pb-24 min-h-screen">
+<!-- Critical Alert Banner -->
+<div class="w-full bg-secondary-container text-on-secondary-container px-6 py-3 flex items-center justify-between critical-glow">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined font-bold">warning</span>
+<span class="font-headline font-bold text-sm tracking-tight">CRITICAL ALERT: SEISMIC ACTIVITY DETECTED</span>
+</div>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</div>
+<div class="px-6 py-8 space-y-8">
+<!-- KPI Section (Asymmetric Grid) -->
+<section class="grid grid-cols-2 gap-4">
+<div class="col-span-2 bg-surface-container-low rounded-xl p-6 border-l-2 border-primary relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-6xl">analytics</span>
+</div>
+<p class="text-on-surface-variant font-label text-xs uppercase tracking-widest mb-1">Total Incidents</p>
+<h2 class="text-4xl font-headline font-black text-primary">1,284</h2>
+<div class="flex items-center gap-2 mt-2 text-tertiary text-xs">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+12% vs last cycle</span>
+</div>
+</div>
+<div class="bg-surface-container rounded-xl p-5 border-l-2 border-tertiary">
+<p class="text-on-surface-variant font-label text-[10px] uppercase tracking-widest mb-1">Active Staff</p>
+<h3 class="text-2xl font-headline font-bold text-tertiary">42</h3>
+<p class="text-[10px] text-on-surface-variant mt-1">Operational status: 98%</p>
+</div>
+<div class="bg-surface-container rounded-xl p-5 border-l-2 border-secondary">
+<p class="text-on-surface-variant font-label text-[10px] uppercase tracking-widest mb-1">Pending SOS</p>
+<h3 class="text-2xl font-headline font-bold text-secondary">07</h3>
+<p class="text-[10px] text-on-surface-variant mt-1">Avg response: 1.4m</p>
+</div>
+</section>
+<!-- Tactical Visualization (Map) -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h4 class="font-headline font-bold text-xl text-on-surface">Live Tactical Feed</h4>
+<span class="flex items-center gap-2 text-xs text-tertiary">
+<span class="w-2 h-2 rounded-full bg-tertiary pulse-ring" style="box-shadow: 0 0 10px rgba(0, 219, 233, 0.3)"></span>
+                        LIVE STREAMING
+                    </span>
+</div>
+<div class="relative w-full h-64 rounded-xl overflow-hidden group">
+<img class="w-full h-full object-cover grayscale brightness-50 contrast-125" data-alt="high-tech satellite map display with glowing blue wireframe city grid and red data points indicating emergency zones" data-location="San Francisco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0nqAjUiR80lBsnfZpCuARku5h8vyvrj0cMF5acya63lobhmCcmcBCCgRUe4tGVwFfEFZAcY7TEJkILmCvy5GchAPjQJq4xoI0JuuZErrKJvTcVhfxjBObWr4zrgijaeAxWD9wetHpzRVnD5RgeaGsNMVcbZHCa7AyMeEEXqVNY9TCAplPl2_jbw3BKTbYr_fh6T_r2qfAejoLySwE-n6GMVMjCnWd-V3scaC3sEMfz3Q-hU0DLnBGr_uvaB6J6vn11J2WEvhV1K4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+<!-- HUD Overlays -->
+<div class="absolute top-4 left-4 glass-card p-3 rounded-lg border border-outline-variant/20">
+<div class="flex items-center gap-2 mb-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-[10px] font-bold">SECTOR 04 - CRITICAL</span>
+</div>
+<div class="text-[8px] font-mono text-on-surface-variant">37.7749° N, 122.4194° W</div>
+</div>
+<div class="absolute bottom-4 right-4 flex gap-2">
+<button class="bg-surface-container-high/80 p-2 rounded-md backdrop-blur-md text-on-surface active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm">zoom_in</span>
+</button>
+<button class="bg-surface-container-high/80 p-2 rounded-md backdrop-blur-md text-on-surface active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm">layers</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Incident Feed -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h4 class="font-headline font-bold text-xl text-on-surface">Recent Incidents</h4>
+<button class="text-primary text-xs font-bold uppercase tracking-tighter hover:underline">View All</button>
+</div>
+<div class="space-y-3">
+<!-- Incident Card 1 -->
+<div class="bg-surface-container-low rounded-xl p-4 relative flex items-start gap-4 hover:bg-surface-container-high transition-colors group">
+<div class="w-1 h-full absolute left-0 top-0 bg-secondary-container rounded-l-xl"></div>
+<div class="bg-secondary-container/20 p-3 rounded-lg text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h5 class="font-bold text-on-surface group-hover:text-primary transition-colors">Structural Failure</h5>
+<span class="text-[10px] text-on-surface-variant font-mono">08:42 AM</span>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">Bridge collapse reported in Sector 04. Tactical units Alpha and Bravo deployed.</p>
+<div class="flex gap-2 mt-3">
+<span class="text-[9px] px-2 py-1 bg-surface-container-highest rounded text-secondary font-bold uppercase">Critical</span>
+<span class="text-[9px] px-2 py-1 bg-surface-container-highest rounded text-on-surface-variant font-bold uppercase">Infrastructure</span>
+</div>
+</div>
+</div>
+<!-- Incident Card 2 -->
+<div class="bg-surface-container-low rounded-xl p-4 relative flex items-start gap-4 hover:bg-surface-container-high transition-colors group">
+<div class="w-1 h-full absolute left-0 top-0 bg-primary/40 rounded-l-xl"></div>
+<div class="bg-primary/10 p-3 rounded-lg text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h5 class="font-bold text-on-surface group-hover:text-primary transition-colors">Grid Failure</h5>
+<span class="text-[10px] text-on-surface-variant font-mono">07:15 AM</span>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">Power surge detected in Central Hub. Automated containment initiated.</p>
+<div class="flex gap-2 mt-3">
+<span class="text-[9px] px-2 py-1 bg-surface-container-highest rounded text-primary font-bold uppercase">Moderate</span>
+<span class="text-[9px] px-2 py-1 bg-surface-container-highest rounded text-on-surface-variant font-bold uppercase">Energy</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- NavigationDrawer (Suppressed on Mobile, Hidden logic) -->
+<aside class="fixed inset-y-0 left-0 z-[60] flex flex-col p-6 h-full w-72 rounded-r-xl bg-[#1a1c20]/95 backdrop-blur-2xl shadow-[20px_0_40px_rgba(0,0,0,0.4)] -translate-x-full lg:translate-x-0 transition-all duration-300 ease-in-out" id="nav-drawer">
+<div class="mb-10">
+<h1 class="font-['Space_Grotesk'] text-xl font-bold text-[#adc6ff]">TACTICAL PRISM</h1>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-4 p-4 rounded-lg bg-gradient-to-r from-[#adc6ff]/20 to-transparent text-[#adc6ff] border-l-2 border-[#adc6ff] font-['Manrope'] font-medium text-sm transition-all duration-300" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Command Center
+            </a>
+<a class="flex items-center gap-4 p-4 rounded-lg text-[#c2c6d6] hover:bg-[#282a2e] font-['Manrope'] font-medium text-sm transition-all duration-300" href="#">
+<span class="material-symbols-outlined">tactic</span>
+                Incidents
+            </a>
+<a class="flex items-center gap-4 p-4 rounded-lg text-[#c2c6d6] hover:bg-[#282a2e] font-['Manrope'] font-medium text-sm transition-all duration-300" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+                Analytics
+            </a>
+<a class="flex items-center gap-4 p-4 rounded-lg text-[#c2c6d6] hover:bg-[#282a2e] font-['Manrope'] font-medium text-sm transition-all duration-300" href="#">
+<span class="material-symbols-outlined">directions_run</span>
+                Evacuation
+            </a>
+</nav>
+<div class="mt-auto pt-6 border-t border-outline-variant/15">
+<div class="flex items-center gap-3 p-2">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center border border-primary/20 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="professional portrait of a high-ranking officer in a sleek futuristic tactical uniform, dark lighting, cinematic look" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDEHteLYllKkRKsR6BNHqP8aaIt9hES_9E7NvtiXB0lYKlVchl77vu4edawjeONJ1cMSoq33AMm-JxQIG5-pvy-Mp_BeJdCHw5-uwWXBxXA89whyfDBhESto2qYimKbmvkjucqrIogyEhrG1-w_AjqcdvU-7i5qAHWmXphj_mLyeRn8PBPb5Az7oMX1fsCtB7gTSw1ZEqwPM-Kg_Z6JyY__PCZKu2fO3a-JRTvkt4z-td1z1m-px9-ZzbBB9o64COPjtqYmb3qzT4"/>
+</div>
+<div>
+<p class="text-xs font-bold text-on-surface">Cmdr. Sterling</p>
+<p class="text-[10px] text-on-surface-variant">Auth Level 05</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-[#111318]/80 backdrop-blur-lg border-t border-[#424754]/15 shadow-[0_-10px_30px_rgba(0,0,0,0.3)] rounded-t-2xl flex justify-around items-center px-4 py-3 pb-safe lg:hidden">
+<a class="flex items-center justify-center bg-[#adc6ff]/10 text-[#adc6ff] rounded-xl p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+</a>
+<a class="flex items-center justify-center text-[#c2c6d6] p-2 hover:text-white active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">warning</span>
+</a>
+<a class="flex items-center justify-center text-[#c2c6d6] p-2 hover:text-white active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+</a>
+<a class="flex items-center justify-center text-[#c2c6d6] p-2 hover:text-white active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">map</span>
+</a>
+</nav>
+<!-- Floating Action Button (Contextual: Dashboard) -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-gradient-to-br from-primary to-primary-container rounded-2xl shadow-2xl shadow-primary/20 flex items-center justify-center text-on-primary-container active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'wght' 600;">add</span>
+</button>
+</body></html>

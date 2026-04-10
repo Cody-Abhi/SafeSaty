@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CrisisGuard AI | Command Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#ffb4a9",
+                    "on-background": "#e2e2e9",
+                    "tertiary": "#ffb4a9",
+                    "on-primary-container": "#002c4f",
+                    "surface-dim": "#111318",
+                    "inverse-primary": "#0061a4",
+                    "secondary-container": "#fabd00",
+                    "surface-container": "#1e2025",
+                    "on-secondary-fixed": "#261a00",
+                    "on-surface": "#e2e2e9",
+                    "on-secondary-fixed-variant": "#5b4300",
+                    "outline-variant": "#404752",
+                    "primary-fixed": "#d1e4ff",
+                    "primary": "#9ecaff",
+                    "on-tertiary-container": "#5e0002",
+                    "tertiary-container": "#ff5748",
+                    "secondary": "#ffdf9e",
+                    "inverse-on-surface": "#2e3036",
+                    "on-secondary-container": "#6a4e00",
+                    "on-error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#930005",
+                    "surface-container-highest": "#33353a",
+                    "on-primary-fixed-variant": "#00497d",
+                    "error": "#ffb4ab",
+                    "surface-container-high": "#282a2f",
+                    "inverse-surface": "#e2e2e9",
+                    "outline": "#89919d",
+                    "surface-container-low": "#1a1b21",
+                    "surface": "#111318",
+                    "on-tertiary-fixed": "#410001",
+                    "secondary-fixed": "#ffdf9e",
+                    "on-surface-variant": "#bfc7d4",
+                    "primary-fixed-dim": "#9ecaff",
+                    "on-error": "#690005",
+                    "surface-variant": "#33353a",
+                    "on-tertiary": "#690002",
+                    "surface-container-lowest": "#0c0e13",
+                    "primary-container": "#2196f3",
+                    "on-secondary": "#3f2e00",
+                    "error-container": "#93000a",
+                    "background": "#111318",
+                    "tertiary-fixed": "#ffdad5",
+                    "on-primary-fixed": "#001d36",
+                    "surface-bright": "#37393f",
+                    "on-primary": "#003258",
+                    "secondary-fixed-dim": "#fabd00",
+                    "surface-tint": "#9ecaff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Manrope"],
+                    "label": ["Space Grotesk"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glow-cyan {
+            box-shadow: 0 0 20px rgba(0, 219, 233, 0.3);
+        }
+        .prism-mesh {
+            background-image: radial-gradient(circle at 2px 2px, rgba(33, 150, 243, 0.05) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30">
+<!-- TopNavBar -->
+<nav class="bg-[#111318]/80 backdrop-blur-xl fixed top-0 w-full z-50 flex justify-between items-center px-8 h-16 w-full shadow-[0_0_40px_rgba(33,150,243,0.06)]">
+<div class="flex items-center gap-4">
+<span class="text-xl font-bold tracking-[0.2em] text-blue-400 font-headline uppercase">CRISISGUARD AI</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-[#bfc7d4] font-medium font-headline tracking-wider uppercase hover:text-blue-300 transition-colors duration-200" href="#">Command</a>
+<a class="text-[#bfc7d4] font-medium font-headline tracking-wider uppercase hover:text-blue-300 transition-colors duration-200" href="#">Signals</a>
+<a class="text-[#bfc7d4] font-medium font-headline tracking-wider uppercase hover:text-blue-300 transition-colors duration-200" href="#">Assets</a>
+<a class="text-blue-400 font-bold border-b-2 border-blue-400 pb-1 font-headline tracking-wider uppercase" href="#">Profile</a>
+</div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">settings</span>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary/20">
+<img alt="User Command Profile Avatar" class="w-full h-full object-cover" data-alt="Close up portrait of a high-ranking tactical officer in dark futuristic techwear with a focused expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAD_rieiqMYLjT1SX0EhKKpKZA4FVlNZyqz70wSfVyQBF8_AaS4_QwijdYLGLcyii7ovV7v8qtq2goiZFT3m1HsbZPMLq8I61C7bMgZ_VY-tf6KfgJxsnNUFNch2pymxnCPwFkH6kcCuvkUOmgEOzSu9cqo-khZ5yojNarbZoQdqKpqj1MOzuNbnb8QMiIhUc3p6yuu_yrxno024xtMaWN5238hl8t8URuUFJbxHFfh4wZuqNe6oKzpkp0h0iEcg4MM1XS9G1GOK5YW"/>
+</div>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 bg-[#1a1b21] flex flex-col border-r border-blue-500/10 hidden md:flex">
+<div class="p-6 flex items-center gap-4 border-b border-blue-500/5">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">account_circle</span>
+</div>
+<div>
+<div class="font-headline text-sm uppercase tracking-tighter text-blue-400">OPERATOR_01</div>
+<div class="text-[10px] text-on-surface-variant uppercase tracking-widest font-label">Level 5 Clearance</div>
+</div>
+</div>
+<nav class="flex-1 py-4">
+<div class="text-[#bfc7d4] py-3 px-6 flex items-center gap-4 hover:bg-[#33353a] hover:text-white transition-all cursor-pointer font-headline text-sm uppercase tracking-tighter">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Command</span>
+</div>
+<div class="text-[#bfc7d4] py-3 px-6 flex items-center gap-4 hover:bg-[#33353a] hover:text-white transition-all cursor-pointer font-headline text-sm uppercase tracking-tighter">
+<span class="material-symbols-outlined" data-icon="radar">radar</span>
+<span>Signals</span>
+</div>
+<div class="text-[#bfc7d4] py-3 px-6 flex items-center gap-4 hover:bg-[#33353a] hover:text-white transition-all cursor-pointer font-headline text-sm uppercase tracking-tighter">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+<span>Assets</span>
+</div>
+<div class="bg-gradient-to-r from-blue-500/10 to-transparent text-blue-400 border-l-4 border-blue-500 py-3 px-6 flex items-center gap-4 font-headline text-sm uppercase tracking-tighter">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span>Profile</span>
+</div>
+</nav>
+<div class="p-4 mt-auto border-t border-blue-500/5">
+<div class="text-[#bfc7d4] py-2 px-2 flex items-center gap-3 hover:text-white transition-all cursor-pointer font-headline text-xs uppercase tracking-tighter">
+<span class="material-symbols-outlined text-sm" data-icon="lock">lock</span>
+<span>Security Logs</span>
+</div>
+<div class="text-[#bfc7d4] py-2 px-2 flex items-center gap-3 hover:text-white transition-all cursor-pointer font-headline text-xs uppercase tracking-tighter">
+<span class="material-symbols-outlined text-sm" data-icon="logout">logout</span>
+<span>Sign Out</span>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="md:ml-64 mt-16 p-8 min-h-screen prism-mesh">
+<div class="max-w-6xl mx-auto space-y-8">
+<!-- 1. Profile Header -->
+<section class="relative bg-surface-container-low rounded-xl p-8 overflow-hidden">
+<div class="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[100px] -mr-48 -mt-48"></div>
+<div class="relative flex flex-col md:flex-row items-center gap-8">
+<!-- Avatar with Glow -->
+<div class="relative group">
+<div class="absolute inset-0 bg-[#00dbe9] rounded-full blur-md opacity-40 group-hover:opacity-60 transition-opacity"></div>
+<div class="relative w-32 h-32 rounded-full border-2 border-[#00dbe9] p-1 bg-surface">
+<img alt="Commander K. Vance" class="w-full h-full rounded-full object-cover" data-alt="Cinematic portrait of a male commander with short grey hair and digital eye enhancement, wearing dark technical armor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN4niQnEjpiYPdTKV7TSgI55QEa0A9SDSeMH6sqxs2McGEMYzIs3qq2rMalRpFnsk7Y8lrsZ4UcbVhBzf7-FisgP3LszvtB0N1VGGQhdWsoyT_zZhyuuvc_X1QFEahjCPgVdnjHcU9kovap3Q_PnNwIJVv57lad_sHPGwydTK22DCivpQigOz3__8kgrG6PbkydQw3-2fEPQp76ydLw1uWBd5OUtQZ3S4zuOjq4wAt9g3SPMAfzIVZndvdACzqBiC0ql2jch9Efkf2"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-[#00dbe9] text-surface p-1 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-sm font-bold">verified_user</span>
+</div>
+</div>
+<!-- Identity Info -->
+<div class="flex-1 text-center md:text-left space-y-4">
+<div>
+<h1 class="font-headline text-4xl md:text-5xl font-bold tracking-tight text-on-surface uppercase">COMMANDER K. VANCE</h1>
+<p class="font-headline text-[#00dbe9] tracking-[0.3em] text-sm mt-1">OPERATIONAL COMMAND OVERSEER</p>
+</div>
+<!-- Stats Row -->
+<div class="flex flex-wrap justify-center md:justify-start gap-6 pt-4">
+<div class="flex flex-col">
+<span class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest">AUTH LEVEL</span>
+<span class="font-headline text-sm font-bold text-on-surface">5 (TOP SECRET)</span>
+</div>
+<div class="w-px h-8 bg-outline-variant/20 self-center hidden sm:block"></div>
+<div class="flex flex-col">
+<span class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest">RESPONSE UNIT</span>
+<span class="font-headline text-sm font-bold text-on-surface">ALPHA-9</span>
+</div>
+<div class="w-px h-8 bg-outline-variant/20 self-center hidden sm:block"></div>
+<div class="flex flex-col">
+<span class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest">FLOOR CLEARANCE</span>
+<span class="font-headline text-sm font-bold text-on-surface">ALL SECTORS</span>
+</div>
+</div>
+</div>
+<!-- Tactical Actions -->
+<div class="flex gap-3">
+<button class="bg-surface-container-highest text-primary font-headline text-xs py-2 px-6 rounded-full hover:bg-surface-bright transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">terminal</span>
+                            COMMAND ACCESS
+                        </button>
+</div>
+</div>
+</section>
+<!-- 2. Notification Matrix (Central Panel) -->
+<section class="space-y-4">
+<div class="flex items-center gap-3 px-2">
+<span class="material-symbols-outlined text-[#00dbe9]">hub</span>
+<h2 class="font-headline text-xl font-bold tracking-wider uppercase">Notification Matrix</h2>
+</div>
+<div class="bg-surface-variant/40 backdrop-blur-xl rounded-xl p-8 border border-white/5">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-separate border-spacing-y-4">
+<thead>
+<tr class="font-label text-[10px] text-on-surface-variant tracking-[0.2em] uppercase">
+<th class="pb-4 pl-4">Severity Level</th>
+<th class="pb-4 text-center">Push Alert</th>
+<th class="pb-4 text-center">Radio Comms</th>
+<th class="pb-4 text-center">SMS Override</th>
+</tr>
+</thead>
+<tbody class="space-y-4">
+<!-- Critical -->
+<tr class="bg-surface-container-low group hover:bg-surface-container transition-colors">
+<td class="py-5 px-6 rounded-l-xl">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-error animate-pulse"></div>
+<span class="font-headline font-bold text-error tracking-wider uppercase">Critical</span>
+</div>
+</td>
+<td class="py-5 text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#00dbe9]"></div>
+</label>
+</td>
+<td class="py-5 text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#00dbe9]"></div>
+</label>
+</td>
+<td class="py-5 text-center rounded-r-xl">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#00dbe9]"></div>
+</label>
+</td>
+</tr>
+<!-- High -->
+<tr class="bg-surface-container-low group hover:bg-surface-container transition-colors">
+<td class="py-5 px-6 rounded-l-xl">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-secondary-container"></div>
+<span class="font-headline font-bold text-secondary-container tracking-wider uppercase">High Risk</span>
+</div>
+</td>
+<td class="py-5 text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#00dbe9]"></div>
+</label>
+</td>
+<td class="py-5 text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#00dbe9]"></div>
+</label>
+</td>
+<td class="py-5 text-center rounded-r-xl">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#00dbe9]"></div>
+</label>
+</td>
+</tr>
+<!-- Medium -->
+<tr class="bg-surface-container-low group hover:bg-surface-container transition-colors">
+<td class="py-5 px-6 rounded-l-xl">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary-container"></div>
+<span class="font-headline font-bold text-primary-container tracking-wider uppercase">Standard</span>
+</div>
+</td>
+<td class="py-5 text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#00dbe9]"></div>
+</label>
+</td>
+<td class="py-5 text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#00dbe9]"></div>
+</label>
+</td>
+<td class="py-5 text-center rounded-r-xl">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#00dbe9]"></div>
+</label>
+</td>
+</tr>
+<!-- Low -->
+<tr class="bg-surface-container-low group hover:bg-surface-container transition-colors">
+<td class="py-5 px-6 rounded-l-xl">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+<span class="font-headline font-bold text-on-surface-variant tracking-wider uppercase">Advisory</span>
+</div>
+</td>
+<td class="py-5 text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#00dbe9]"></div>
+</label>
+</td>
+<td class="py-5 text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#00dbe9]"></div>
+</label>
+</td>
+<td class="py-5 text-center rounded-r-xl">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#00dbe9]"></div>
+</label>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- 3. Skills & Certifications -->
+<section class="space-y-4">
+<div class="flex items-center gap-3 px-2">
+<span class="material-symbols-outlined text-[#00dbe9]">verified</span>
+<h2 class="font-headline text-xl font-bold tracking-wider uppercase">Active Certifications</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Badge 1 -->
+<div class="bg-surface-container-low rounded-xl p-6 border-l-4 border-[#00dbe9] group hover:bg-surface-container transition-all">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-full bg-surface-container-highest flex items-center justify-center text-[#00dbe9] shadow-[0_0_15px_rgba(0,219,233,0.15)] group-hover:shadow-[0_0_20px_rgba(0,219,233,0.3)] transition-all">
+<span class="material-symbols-outlined text-3xl">medical_services</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-on-surface uppercase tracking-tight">Advanced First Aid</h3>
+<p class="text-[10px] font-label text-on-surface-variant tracking-[0.2em] mt-1 uppercase">Issued: SEP 2023</p>
+</div>
+</div>
+</div>
+<!-- Badge 2 -->
+<div class="bg-surface-container-low rounded-xl p-6 border-l-4 border-secondary-container group hover:bg-surface-container transition-all">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-full bg-surface-container-highest flex items-center justify-center text-secondary-container shadow-[0_0_15px_rgba(250,189,0,0.15)] group-hover:shadow-[0_0_20px_rgba(250,189,0,0.3)] transition-all">
+<span class="material-symbols-outlined text-3xl">local_fire_department</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-on-surface uppercase tracking-tight">Fire Marshall</h3>
+<p class="text-[10px] font-label text-on-surface-variant tracking-[0.2em] mt-1 uppercase">Issued: JAN 2024</p>
+</div>
+</div>
+</div>
+<!-- Badge 3 -->
+<div class="bg-surface-container-low rounded-xl p-6 border-l-4 border-primary group hover:bg-surface-container transition-all">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-full bg-surface-container-highest flex items-center justify-center text-primary shadow-[0_0_15px_rgba(158,202,255,0.15)] group-hover:shadow-[0_0_20px_rgba(158,202,255,0.3)] transition-all">
+<span class="material-symbols-outlined text-3xl">psychology</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-on-surface uppercase tracking-tight">AI Ops Certified</h3>
+<p class="text-[10px] font-label text-on-surface-variant tracking-[0.2em] mt-1 uppercase">Issued: MAR 2024</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Floating Action Element -->
+<div class="fixed bottom-8 right-8">
+<button class="w-14 h-14 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 text-white shadow-[0_0_30px_rgba(33,150,243,0.3)] flex items-center justify-center hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">security</span>
+</button>
+</div>
+</body></html>

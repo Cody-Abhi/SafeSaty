@@ -1,0 +1,25 @@
+{
+  "name": "@crisisguard/emergency-services-gateway",
+  "version": "1.0.0",
+  "description": "External emergency services integration — CAD, NG911, telephony",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "twilio": "^5.5.1",
+    "uuid": "^11.1.0",
+    "cors": "^2.8.5",
+    "helmet": "^8.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.2",
+    "@types/cors": "^2.8.17",
+    "@types/uuid": "^10.0.0",
+    "typescript": "^5.8.3",
+    "ts-node-dev": "^2.0.0"
+  }
+}

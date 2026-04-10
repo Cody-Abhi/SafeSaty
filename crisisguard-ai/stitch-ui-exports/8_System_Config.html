@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CrisisGuard AI | System Configuration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#ffdad5",
+                    "on-surface-variant": "#bfc7d4",
+                    "surface-dim": "#111318",
+                    "surface-bright": "#37393f",
+                    "surface-container": "#1e2025",
+                    "error": "#ffb4ab",
+                    "on-primary-fixed": "#001d36",
+                    "surface-container-lowest": "#0c0e13",
+                    "on-primary": "#003258",
+                    "on-tertiary-container": "#5e0002",
+                    "on-primary-fixed-variant": "#00497d",
+                    "tertiary": "#ffb4a9",
+                    "on-secondary-fixed": "#261a00",
+                    "on-background": "#e2e2e9",
+                    "secondary": "#ffdf9e",
+                    "on-tertiary-fixed-variant": "#930005",
+                    "on-error-container": "#ffdad6",
+                    "error-container": "#93000a",
+                    "inverse-on-surface": "#2e3036",
+                    "tertiary-fixed-dim": "#ffb4a9",
+                    "surface-container-high": "#282a2f",
+                    "on-surface": "#e2e2e9",
+                    "on-tertiary": "#690002",
+                    "surface-container-highest": "#33353a",
+                    "surface": "#111318",
+                    "primary-fixed-dim": "#9ecaff",
+                    "tertiary-container": "#ff5748",
+                    "on-error": "#690005",
+                    "secondary-fixed-dim": "#fabd00",
+                    "secondary-fixed": "#ffdf9e",
+                    "secondary-container": "#fabd00",
+                    "background": "#111318",
+                    "surface-variant": "#33353a",
+                    "surface-container-low": "#1a1b21",
+                    "on-secondary-fixed-variant": "#5b4300",
+                    "primary": "#9ecaff",
+                    "primary-fixed": "#d1e4ff",
+                    "on-secondary": "#3f2e00",
+                    "outline-variant": "#404752",
+                    "outline": "#89919d",
+                    "surface-tint": "#9ecaff",
+                    "primary-container": "#2196f3",
+                    "inverse-surface": "#e2e2e9",
+                    "inverse-primary": "#0061a4",
+                    "on-tertiary-fixed": "#410001",
+                    "on-primary-container": "#002c4f",
+                    "on-secondary-container": "#6a4e00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Manrope"],
+                    "label": ["Space Grotesk"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Manrope', sans-serif; background-color: #111318; color: #e2e2e9; }
+        .font-headline { font-family: 'Space Grotesk', sans-serif; }
+        .glass-panel {
+            background: rgba(51, 53, 58, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="overflow-hidden">
+<!-- SideNavBar (Shared Component) -->
+<nav class="fixed left-0 top-0 h-full w-64 z-40 bg-[#1a1b21] flex flex-col py-8 px-4">
+<div class="mb-10 px-4">
+<h1 class="text-lg font-black text-[#9ecaff] font-headline tracking-tighter">CrisisGuard AI</h1>
+<p class="text-[10px] font-headline uppercase tracking-widest text-[#bfc7d4] opacity-50 mt-1">Tactical Command</p>
+</div>
+<div class="space-y-2 flex-1">
+<a class="flex items-center gap-3 px-4 py-3 text-[#bfc7d4] opacity-70 font-headline text-sm uppercase tracking-widest hover:bg-[#33353a] hover:opacity-100 transition-colors rounded-xl group" href="#">
+<span class="material-symbols-outlined group-active:translate-x-1 duration-200" data-icon="grid_view">grid_view</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#bfc7d4] opacity-70 font-headline text-sm uppercase tracking-widest hover:bg-[#33353a] hover:opacity-100 transition-colors rounded-xl group" href="#">
+<span class="material-symbols-outlined group-active:translate-x-1 duration-200" data-icon="floorplan">floor</span>
+                Tactical Map
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#bfc7d4] opacity-70 font-headline text-sm uppercase tracking-widest hover:bg-[#33353a] hover:opacity-100 transition-colors rounded-xl group" href="#">
+<span class="material-symbols-outlined group-active:translate-x-1 duration-200" data-icon="rule">rule</span>
+                Rule Engine
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-[#9ecaff]/10 to-transparent text-[#9ecaff] border-r-4 border-[#2196f3] font-headline text-sm uppercase tracking-widest rounded-l-xl group" href="#">
+<span class="material-symbols-outlined group-active:translate-x-1 duration-200" data-icon="settings_input_component">settings_input_component</span>
+                System Config
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#bfc7d4] opacity-70 font-headline text-sm uppercase tracking-widest hover:bg-[#33353a] hover:opacity-100 transition-colors rounded-xl group" href="#">
+<span class="material-symbols-outlined group-active:translate-x-1 duration-200" data-icon="history_edu">history_edu</span>
+                Mission Logs
+            </a>
+</div>
+<div class="mt-auto space-y-6">
+<button class="w-full py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary font-headline font-bold text-xs tracking-widest rounded-full hover:brightness-110 transition-all active:scale-95">
+                DEPLOY UPDATE
+            </button>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-[#bfc7d4] opacity-50 font-headline text-[10px] uppercase tracking-widest hover:text-[#9ecaff] transition-colors" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="help_outline">help_outline</span>
+                    Support
+                </a>
+<a class="flex items-center gap-3 px-4 py-2 text-[#bfc7d4] opacity-50 font-headline text-[10px] uppercase tracking-widest hover:text-[#9ecaff] transition-colors" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="logout">logout</span>
+                    Sign Out
+                </a>
+</div>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="ml-64 h-screen bg-background overflow-hidden relative flex flex-col">
+<!-- TopAppBar (Shared Component) -->
+<header class="flex justify-between items-center px-8 h-16 w-full fixed top-0 bg-[#111318]/80 backdrop-blur-xl z-30 shadow-[0_0_40px_rgba(33,150,243,0.06)]">
+<div class="flex items-center gap-4">
+<span class="text-[#9ecaff] font-headline font-bold tracking-tight">SYSTEM CONFIGURATION</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary shadow-[0_0_8px_#fabd00]"></span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-[#bfc7d4] cursor-pointer hover:text-[#9ecaff] transition-all" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-[#bfc7d4] cursor-pointer hover:text-[#9ecaff] transition-all" data-icon="settings">settings</span>
+<span class="material-symbols-outlined text-[#bfc7d4] cursor-pointer hover:text-[#9ecaff] transition-all" data-icon="admin_panel_settings">admin_panel_settings</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="Crisis Commander Profile" class="w-full h-full object-cover" data-alt="portrait of a focused high-tech systems administrator in a dimly lit command center with blue accent lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG6HZfK06jDiDQ-utY8kG5IP9mfA1hJflqb6TBgvtjIwVBlroK9bsgZUiaWSap0eOLQ3ofasl3eRceWRW7zxUrKMV9fSn_NLuUQvWwFsywMciu1AQKTUIg2_rf4cr-_80nR5ebA2ZmowEOG0Hxitw-gn0teiaeAN7SyGFR1pYbRQOsKZV4vldXxgWI6AqNBPkKcVUiV93bEqgUgGPkDpSCXi-uK6dKkmq_3H2itn2y8iaCYajCsElayznQfAH3DUZJ0HJMzkWk3RLg"/>
+</div>
+</div>
+</header>
+<!-- Configuration Workspace -->
+<div class="mt-16 flex-1 flex overflow-hidden">
+<!-- Secondary Vertical Navigation -->
+<aside class="w-72 bg-surface-container-low p-6 space-y-1">
+<div class="mb-8 px-2">
+<h3 class="text-[10px] font-headline text-on-surface-variant/40 uppercase tracking-[0.2em] mb-4">Config Modules</h3>
+<div class="space-y-1">
+<button class="w-full flex items-center justify-between px-4 py-3 bg-surface-container-highest text-primary rounded-xl transition-all">
+<span class="font-headline text-xs font-bold uppercase tracking-widest">Building Map</span>
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between px-4 py-3 text-on-surface-variant/60 hover:bg-surface-container-high rounded-xl transition-all group">
+<span class="font-headline text-xs font-bold uppercase tracking-widest group-hover:text-on-surface transition-colors">Sensor Integrations</span>
+<span class="material-symbols-outlined text-sm" data-icon="settings_input_hdmi">settings_input_hdmi</span>
+</button>
+<button class="w-full flex items-center justify-between px-4 py-3 text-on-surface-variant/60 hover:bg-surface-container-high rounded-xl transition-all group">
+<span class="font-headline text-xs font-bold uppercase tracking-widest group-hover:text-on-surface transition-colors">Notification Rules</span>
+<span class="material-symbols-outlined text-sm" data-icon="notifications_active">notifications_active</span>
+</button>
+<button class="w-full flex items-center justify-between px-4 py-3 text-on-surface-variant/60 hover:bg-surface-container-high rounded-xl transition-all group">
+<span class="font-headline text-xs font-bold uppercase tracking-widest group-hover:text-on-surface transition-colors">API Keys</span>
+<span class="material-symbols-outlined text-sm" data-icon="key">key</span>
+</button>
+</div>
+</div>
+<div class="p-4 bg-surface-container-lowest rounded-xl">
+<p class="text-[10px] font-headline text-on-surface-variant/50 leading-relaxed">
+                        LAST BACKUP: 2024-10-12 14:32:01<br/>
+                        INSTANCE ID: CG-AI-7742-XP
+                    </p>
+</div>
+</aside>
+<!-- Main Content Area -->
+<section class="flex-1 overflow-y-auto p-10 space-y-12 pb-32">
+<!-- Building Map Section (Active) -->
+<div>
+<header class="mb-8">
+<h2 class="text-3xl font-headline font-bold text-on-surface tracking-tight">Building Map Architecture</h2>
+<p class="text-on-surface-variant/60 font-body text-sm mt-2">Define spatial geometry and deploy hardware sensor nodes across the environment.</p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Floor Plan Upload -->
+<div class="lg:col-span-2 bg-surface-container-low rounded-xl p-6 relative group overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative border-2 border-dashed border-outline-variant/30 rounded-xl h-[400px] flex flex-col items-center justify-center bg-surface-container-lowest/50 hover:border-primary/50 transition-all cursor-pointer">
+<span class="material-symbols-outlined text-5xl text-primary/40 mb-4" data-icon="cloud_upload">cloud_upload</span>
+<p class="font-headline text-sm font-bold tracking-widest text-on-surface">DRAG FLOOR PLAN ARCHIVE</p>
+<p class="text-xs text-on-surface-variant/50 mt-2 font-body">Supports CAD, PDF, and high-res Raster formats</p>
+<button class="mt-6 px-6 py-2 bg-surface-container-highest text-primary text-[10px] font-headline font-bold tracking-[0.2em] rounded-full uppercase border border-primary/20">Browse Files</button>
+</div>
+</div>
+<!-- Sensor Tool Palette -->
+<div class="space-y-4">
+<h4 class="text-[10px] font-headline text-primary uppercase tracking-[0.2em] mb-2 px-1">Hardware Provisioning</h4>
+<div class="bg-surface-container-high rounded-xl p-4 flex items-center gap-4 cursor-grab active:cursor-grabbing hover:bg-surface-container-highest transition-colors">
+<div class="w-10 h-10 rounded-xl bg-surface-container-lowest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="videocam">videocam</span>
+</div>
+<div>
+<h5 class="text-xs font-headline font-bold uppercase tracking-widest text-on-surface">Visual Sensor</h5>
+<p class="text-[10px] text-on-surface-variant/50 font-body">4K Thermal/Optical Array</p>
+</div>
+</div>
+<div class="bg-surface-container-high rounded-xl p-4 flex items-center gap-4 cursor-grab active:cursor-grabbing hover:bg-surface-container-highest transition-colors">
+<div class="w-10 h-10 rounded-xl bg-surface-container-lowest flex items-center justify-center text-error">
+<span class="material-symbols-outlined" data-icon="smoke_free">smoke_free</span>
+</div>
+<div>
+<h5 class="text-xs font-headline font-bold uppercase tracking-widest text-on-surface">Atmospheric Node</h5>
+<p class="text-[10px] text-on-surface-variant/50 font-body">Smoke &amp; Carbon Analysis</p>
+</div>
+</div>
+<div class="bg-surface-container-high rounded-xl p-4 flex items-center gap-4 cursor-grab active:cursor-grabbing hover:bg-surface-container-highest transition-colors">
+<div class="w-10 h-10 rounded-xl bg-surface-container-lowest flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="emergency_home">emergency_home</span>
+</div>
+<div>
+<h5 class="text-xs font-headline font-bold uppercase tracking-widest text-on-surface">Panic Actuator</h5>
+<p class="text-[10px] text-on-surface-variant/50 font-body">Tactile Alert System</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Notification Rules Section -->
+<div>
+<header class="mb-8">
+<h2 class="text-3xl font-headline font-bold text-on-surface tracking-tight">Notification Protocols</h2>
+<p class="text-on-surface-variant/60 font-body text-sm mt-2">Configure automated incident propagation channels.</p>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="glass-panel p-6 rounded-xl border border-outline-variant/10 flex flex-col h-48 justify-between hover:border-primary/20 transition-all group">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</div>
+<!-- Toggle Switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#00dbe9]"></div>
+</label>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg text-on-surface uppercase tracking-tighter">Push Notifications</h3>
+<p class="text-xs text-on-surface-variant/60 font-body mt-1">Instant mobile app alerts</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-panel p-6 rounded-xl border border-outline-variant/10 flex flex-col h-48 justify-between hover:border-primary/20 transition-all group">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="sms">sms</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#00dbe9]"></div>
+</label>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg text-on-surface uppercase tracking-tighter">SMS Alerts</h3>
+<p class="text-xs text-on-surface-variant/60 font-body mt-1">Direct cellular messaging</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="glass-panel p-6 rounded-xl border border-outline-variant/10 flex flex-col h-48 justify-between hover:border-primary/20 transition-all group">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 rounded-full bg-error/10 flex items-center justify-center text-error">
+<span class="material-symbols-outlined" data-icon="emergency_share">emergency_share</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#00dbe9]"></div>
+</label>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg text-on-surface uppercase tracking-tighter">CAD Dispatch</h3>
+<p class="text-xs text-on-surface-variant/60 font-body mt-1">Emergency service integration</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer / Status Bar (Shared Component Style) -->
+<footer class="fixed bottom-0 right-0 w-[calc(100%-16rem)] z-30 bg-[#111318] border-t border-[#bfc7d4]/15 px-10 py-3 flex justify-between items-center">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="relative w-8 h-8 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container-highest" cx="16" cy="16" fill="transparent" r="14" stroke="currentColor" stroke-width="3"></circle>
+<circle class="text-primary" cx="16" cy="16" fill="transparent" r="14" stroke="currentColor" stroke-dasharray="88" stroke-dashoffset="35" stroke-width="3"></circle>
+</svg>
+<span class="absolute text-[8px] font-headline font-bold text-primary">62%</span>
+</div>
+<span class="font-headline text-[10px] uppercase tracking-widest text-[#bfc7d4]/50">CPU LOAD</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="relative w-8 h-8 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container-highest" cx="16" cy="16" fill="transparent" r="14" stroke="currentColor" stroke-width="3"></circle>
+<circle class="text-secondary" cx="16" cy="16" fill="transparent" r="14" stroke="currentColor" stroke-dasharray="88" stroke-dashoffset="15" stroke-width="3"></circle>
+</svg>
+<span class="absolute text-[8px] font-headline font-bold text-secondary">82%</span>
+</div>
+<span class="font-headline text-[10px] uppercase tracking-widest text-[#bfc7d4]/50">MEMORY USAGE</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<span class="font-headline text-[10px] uppercase tracking-[0.2em] text-[#2196f3]">SYSTEM HEALTH: OPTIMAL</span>
+<div class="flex gap-4">
+<a class="font-headline text-[10px] uppercase tracking-[0.2em] text-[#bfc7d4]/50 hover:text-[#9ecaff] transition-opacity" href="#">Privacy Protocol</a>
+<a class="font-headline text-[10px] uppercase tracking-[0.2em] text-[#bfc7d4]/50 hover:text-[#9ecaff] transition-opacity" href="#">Service Status</a>
+</div>
+<span class="font-headline text-[10px] uppercase tracking-[0.2em] text-[#bfc7d4]/30">© 2024 CRISISGUARD AI</span>
+</div>
+</footer>
+</main>
+</body></html>

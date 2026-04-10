@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CrisisGuard AI | Command Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#ff5748",
+                    "secondary-container": "#fabd00",
+                    "primary": "#9ecaff",
+                    "on-tertiary-container": "#5e0002",
+                    "on-error": "#690005",
+                    "primary-container": "#2196f3",
+                    "on-primary-container": "#002c4f",
+                    "primary-fixed-dim": "#9ecaff",
+                    "outline": "#89919d",
+                    "surface-tint": "#9ecaff",
+                    "surface-container-highest": "#33353a",
+                    "surface-container-lowest": "#0c0e13",
+                    "on-secondary": "#3f2e00",
+                    "inverse-surface": "#e2e2e9",
+                    "inverse-on-surface": "#2e3036",
+                    "surface-variant": "#33353a",
+                    "on-secondary-fixed": "#261a00",
+                    "surface-bright": "#37393f",
+                    "surface-container-low": "#1a1b21",
+                    "on-secondary-container": "#6a4e00",
+                    "surface-container": "#1e2025",
+                    "secondary-fixed": "#ffdf9e",
+                    "outline-variant": "#404752",
+                    "on-primary-fixed": "#001d36",
+                    "on-tertiary": "#690002",
+                    "surface": "#111318",
+                    "on-primary": "#003258",
+                    "secondary-fixed-dim": "#fabd00",
+                    "tertiary": "#ffb4a9",
+                    "on-tertiary-fixed-variant": "#930005",
+                    "background": "#111318",
+                    "surface-container-high": "#282a2f",
+                    "secondary": "#ffdf9e",
+                    "surface-dim": "#111318",
+                    "primary-fixed": "#d1e4ff",
+                    "on-secondary-fixed-variant": "#5b4300",
+                    "tertiary-fixed": "#ffdad5",
+                    "on-primary-fixed-variant": "#00497d",
+                    "on-surface-variant": "#bfc7d4",
+                    "error": "#ffb4ab",
+                    "inverse-primary": "#0061a4",
+                    "on-tertiary-fixed": "#410001",
+                    "on-background": "#e2e2e9",
+                    "error-container": "#93000a",
+                    "tertiary-fixed-dim": "#ffb4a9",
+                    "on-surface": "#e2e2e9",
+                    "on-error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Manrope"],
+                    "label": ["Space Grotesk"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #111318;
+            color: #e2e2e9;
+            font-family: 'Manrope', sans-serif;
+        }
+        .glass-card {
+            background-color: rgba(51, 53, 58, 0.4);
+            backdrop-filter: blur(12px);
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111318;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #33353a;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#111318]/80 backdrop-blur-xl flex justify-between items-center px-6 h-16 shadow-[0_0_40px_rgba(33,150,243,0.06)]">
+<div class="flex items-center gap-8">
+<h1 class="text-xl font-bold tracking-widest text-[#9ecaff] uppercase font-['Space_Grotesk']">CrisisGuard AI</h1>
+<nav class="hidden md:flex gap-6">
+<a class="text-sm font-['Space_Grotesk'] tracking-wider text-[#bfc7d4] hover:bg-[#33353a] transition-colors duration-200 px-3 py-1 rounded-lg" href="#">SYSTEMS</a>
+<a class="text-sm font-['Space_Grotesk'] tracking-wider text-[#9ecaff] border-b-2 border-[#2196f3] px-3 py-1" href="#">COMMAND</a>
+<a class="text-sm font-['Space_Grotesk'] tracking-wider text-[#bfc7d4] hover:bg-[#33353a] transition-colors duration-200 px-3 py-1 rounded-lg" href="#">NETWORK</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="bg-surface-container-lowest border-none rounded-xl pl-10 pr-4 py-2 text-sm w-64 focus:ring-1 focus:ring-primary-container font-body" placeholder="Search incidents..." type="text"/>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-[#33353a] transition-colors duration-200 rounded-full active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-[#33353a] transition-colors duration-200 rounded-full active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="professional male portrait with neutral background, tactical officer style, sharp lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6kHF7rexcuXUXitctLIHQ6bdaPD1GvoHdiua38cQ7NR4_Gc1aw6IMdxHFs5WeLTrGbi2zNfrVbcwbkP7790FhVSxjDSzZOjSaxcaVMShXxCn4nvgQZBo3WoyG7BlqtcCWGzZsKRTWOpjbhFhJOKzXdtNhZeUFzsh9hQjLuBYby-qEeq4oNH73vAftDy0pUXK7bwf2pLG9RoSXS8ud4KyjsazayEx428P9KidHElmFd9rkmakclBU-9wmi0RCRWaUUxBwXgQ-6bU2O"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 z-40 bg-[#1a1b21] flex flex-col pt-20 pb-6 px-4">
+<div class="px-4 mb-8">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></div>
+<span class="font-headline text-xs uppercase tracking-widest text-on-surface-variant">Command Center</span>
+</div>
+<p class="text-primary font-headline text-lg font-bold">Active Ops: 12</p>
+</div>
+<div class="flex-1 space-y-2">
+<a class="flex items-center gap-4 px-4 py-3 text-[#bfc7d4] opacity-70 hover:bg-[#33353a] hover:opacity-100 transition-all rounded-xl font-label text-sm uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 bg-[#33353a] text-[#9ecaff] font-bold border-r-4 border-[#2196f3] transition-all rounded-xl font-label text-sm uppercase tracking-wider active:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="emergency">emergency</span>
+<span>Incidents</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#bfc7d4] opacity-70 hover:bg-[#33353a] hover:opacity-100 transition-all rounded-xl font-label text-sm uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+<span>Dispatch</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#bfc7d4] opacity-70 hover:bg-[#33353a] hover:opacity-100 transition-all rounded-xl font-label text-sm uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span>Resources</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#bfc7d4] opacity-70 hover:bg-[#33353a] hover:opacity-100 transition-all rounded-xl font-label text-sm uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+<span>Analytics</span>
+</a>
+</div>
+<button class="mx-2 mb-6 py-3 rounded-xl bg-gradient-to-br from-primary to-primary-container text-on-primary-container font-headline font-bold uppercase tracking-tighter shadow-lg shadow-primary/10 active:scale-95 transition-transform">
+            New Incident
+        </button>
+<div class="pt-6 border-t border-outline-variant/20 space-y-2">
+<a class="flex items-center gap-4 px-4 py-2 text-[#bfc7d4] opacity-70 hover:bg-[#33353a] rounded-xl font-label text-xs uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="help">help</span>
+<span>Support</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-2 text-[#bfc7d4] opacity-70 hover:bg-[#33353a] rounded-xl font-label text-xs uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="history">history</span>
+<span>Logs</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="pl-64 pt-16 h-screen flex bg-surface overflow-hidden">
+<!-- LEFT SIDE: Incident Queue -->
+<section class="w-[420px] h-full flex flex-col bg-surface-container-low border-r border-outline-variant/10">
+<div class="p-6">
+<div class="flex justify-between items-end mb-6">
+<h2 class="font-headline text-2xl font-bold tracking-tight text-on-surface">Queue</h2>
+<span class="font-label text-[10px] text-on-surface-variant bg-surface-container-highest px-2 py-1 rounded-full uppercase tracking-widest">Live Updates</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto px-6 pb-20 space-y-4">
+<!-- Incident Card: Critical -->
+<div class="glass-card rounded-xl p-4 border-l-[3px] border-tertiary-container cursor-pointer hover:bg-surface-container-highest/60 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label text-[10px] text-tertiary uppercase font-bold tracking-widest">CRITICAL</span>
+<span class="font-label text-[10px] text-on-surface-variant">09:42:15</span>
+</div>
+<h3 class="font-headline text-lg font-bold mb-1">Structural Fire - Sector 4</h3>
+<p class="font-body text-sm text-on-surface-variant mb-3 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">location_on</span> 1422 Industrial Way, Downtown
+                    </p>
+<div class="flex gap-2">
+<span class="text-[9px] font-label px-2 py-1 bg-tertiary-container/20 text-tertiary rounded-full uppercase">Fire Dept</span>
+<span class="text-[9px] font-label px-2 py-1 bg-tertiary-container/20 text-tertiary rounded-full uppercase">Medical</span>
+</div>
+</div>
+<!-- Incident Card: Warning -->
+<div class="glass-card rounded-xl p-4 border-l-[3px] border-secondary-container cursor-pointer hover:bg-surface-container-highest/60 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label text-[10px] text-secondary-container uppercase font-bold tracking-widest">WARNING</span>
+<span class="font-label text-[10px] text-on-surface-variant">09:38:02</span>
+</div>
+<h3 class="font-headline text-lg font-bold mb-1">Traffic Hazard - Main Hwy</h3>
+<p class="font-body text-sm text-on-surface-variant mb-3 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">location_on</span> KM 42, North Bound
+                    </p>
+<div class="flex gap-2">
+<span class="text-[9px] font-label px-2 py-1 bg-secondary-container/20 text-secondary-container rounded-full uppercase">Patrol</span>
+</div>
+</div>
+<!-- Incident Card: Info -->
+<div class="glass-card rounded-xl p-4 border-l-[3px] border-primary-container cursor-pointer hover:bg-surface-container-highest/60 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label text-[10px] text-primary uppercase font-bold tracking-widest">INFO</span>
+<span class="font-label text-[10px] text-on-surface-variant">09:30:45</span>
+</div>
+<h3 class="font-headline text-lg font-bold mb-1">Public Event - Plaza</h3>
+<p class="font-body text-sm text-on-surface-variant mb-3 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">location_on</span> City Square East
+                    </p>
+<div class="flex gap-2">
+<span class="text-[9px] font-label px-2 py-1 bg-primary-container/20 text-primary rounded-full uppercase">Logistics</span>
+</div>
+</div>
+<!-- Incident Card: Critical (Active Selection) -->
+<div class="bg-surface-container-highest rounded-xl p-4 border-l-[3px] border-tertiary-container shadow-[0_0_20px_rgba(255,87,72,0.1)] border border-outline-variant/30">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label text-[10px] text-tertiary uppercase font-bold tracking-widest">CRITICAL</span>
+<span class="font-label text-[10px] text-on-surface-variant">09:24:12</span>
+</div>
+<h3 class="font-headline text-lg font-bold mb-1">Power Grid Failure</h3>
+<p class="font-body text-sm text-on-surface-variant mb-3 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">location_on</span> Substation 09, West Hills
+                    </p>
+<div class="flex gap-2">
+<span class="text-[9px] font-label px-2 py-1 bg-tertiary-container/20 text-tertiary rounded-full uppercase">Utility</span>
+<span class="text-[9px] font-label px-2 py-1 bg-tertiary-container/20 text-tertiary rounded-full uppercase">Security</span>
+</div>
+</div>
+</div>
+</section>
+<!-- RIGHT SIDE: Action Center -->
+<section class="flex-1 h-full overflow-y-auto p-8 relative">
+<div class="max-w-4xl mx-auto">
+<!-- Header Info -->
+<div class="flex justify-between items-start mb-8">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="px-3 py-1 bg-tertiary-container text-on-tertiary-container font-label text-[10px] font-bold uppercase rounded-full">Incident #902-X</span>
+<span class="font-body text-sm text-on-surface-variant tracking-wide">Reported 14m ago</span>
+</div>
+<h1 class="font-headline text-4xl font-bold tracking-tighter text-on-surface">Substation 09: Power Grid Failure</h1>
+</div>
+<div class="flex gap-3">
+<button class="p-3 bg-surface-container-highest text-primary rounded-xl hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined">share</span>
+</button>
+<button class="p-3 bg-surface-container-highest text-primary rounded-xl hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined">print</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Data & Map Section -->
+<div class="lg:col-span-7 space-y-8">
+<!-- Incident Map (Simulated) -->
+<div class="h-64 bg-surface-container-high rounded-xl overflow-hidden relative border border-outline-variant/10">
+<img class="w-full h-full object-cover opacity-60" data-alt="satellite view map of city outskirts with industrial structures and glowing grid lines overlay" data-location="West Hills" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7jk3nGkMMZ3RxBGVkyRY7sVi2a_OXYmMGsDPSiMJUxtqOWBSCh9IyoQcNqprGvriziaE7yX-3X6uQ2dgABqeHYDb50gBtOjQ--ARvwFOwnQHRkMIDrixdWqKqgINHXKBs9Ce6FTq-tBkRQBogDnvB_I0-DtHFJu6P6d0hzeTQvKzUTL5IEmzWDw_dT6r1Qr_9DG-mrjHHt8EQCx5p4dGxn1XYmD8O-_cbDuXdr9hsXwRl2YC2i2mTDr4jYrun8DzhRW2wQfS30fXn"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+<div class="absolute top-4 right-4 bg-surface-container-lowest/80 backdrop-blur p-2 rounded-lg border border-outline-variant/20">
+<span class="font-label text-[10px] text-primary tracking-widest uppercase">Live Drone Feed Available</span>
+</div>
+<div class="absolute bottom-4 left-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-tertiary-container animate-ping"></span>
+<span class="font-headline font-bold text-lg">Substation Zone A-2</span>
+</div>
+</div>
+</div>
+<!-- Staff Roles -->
+<div class="bg-surface-container-low rounded-xl p-6">
+<h4 class="font-headline text-sm font-bold uppercase tracking-widest text-on-surface-variant mb-4">Required Staff Roles</h4>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex items-center gap-3 p-3 bg-surface-container-highest rounded-xl border border-outline-variant/10">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">engineering</span>
+</div>
+<div>
+<p class="font-headline text-sm font-bold">Grid Specialist</p>
+<p class="font-body text-[10px] text-on-surface-variant">Lvl 4 Cert Required</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container-highest rounded-xl border border-outline-variant/10">
+<div class="w-10 h-10 rounded-lg bg-secondary-container/10 flex items-center justify-center text-secondary-container">
+<span class="material-symbols-outlined">shield</span>
+</div>
+<div>
+<p class="font-headline text-sm font-bold">Zone Security</p>
+<p class="font-body text-[10px] text-on-surface-variant">2 Units Dispatched</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container-highest rounded-xl border border-outline-variant/10 opacity-50">
+<div class="w-10 h-10 rounded-lg bg-on-surface-variant/10 flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">medical_services</span>
+</div>
+<div>
+<p class="font-headline text-sm font-bold">Paramedic</p>
+<p class="font-body text-[10px] text-on-surface-variant">On Standby</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container-highest rounded-xl border border-outline-variant/10">
+<div class="w-10 h-10 rounded-lg bg-primary-container/10 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined">hub</span>
+</div>
+<div>
+<p class="font-headline text-sm font-bold">Comm Liaison</p>
+<p class="font-body text-[10px] text-on-surface-variant">Active Link</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar Section: Timeline & CTA -->
+<div class="lg:col-span-5 space-y-6">
+<!-- Dispatch Button -->
+<button class="w-full py-6 rounded-xl bg-gradient-to-br from-primary to-primary-container text-on-primary-container font-headline text-xl font-bold uppercase tracking-tighter shadow-2xl shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-transform">
+                            Dispatch Team
+                        </button>
+<!-- Timeline Widget -->
+<div class="bg-surface-container-low rounded-xl p-6 border border-outline-variant/5">
+<h4 class="font-headline text-sm font-bold uppercase tracking-widest text-on-surface-variant mb-6">Incident History</h4>
+<div class="relative space-y-8 pl-8">
+<div class="absolute left-3 top-2 bottom-2 w-[1px] bg-outline-variant/30"></div>
+<!-- Timeline Item -->
+<div class="relative">
+<div class="absolute -left-6 top-1 w-3 h-3 rounded-full bg-outline-variant border-2 border-surface"></div>
+<div>
+<p class="font-headline text-sm font-bold">Reported</p>
+<p class="font-body text-xs text-on-surface-variant">09:10 - Automated Grid Alert triggered at Substation 09.</p>
+</div>
+</div>
+<!-- Timeline Item -->
+<div class="relative">
+<div class="absolute -left-6 top-1 w-3 h-3 rounded-full bg-primary-container border-2 border-surface"></div>
+<div>
+<p class="font-headline text-sm font-bold">AI Assessed</p>
+<p class="font-body text-xs text-on-surface-variant">09:12 - Risk Model identified high-probability transformer failure. Priority escalated.</p>
+</div>
+</div>
+<!-- Timeline Item -->
+<div class="relative">
+<div class="absolute -left-6 top-1 w-3 h-3 rounded-full bg-secondary-container border-2 border-surface"></div>
+<div>
+<p class="font-headline text-sm font-bold">Staff Dispatched</p>
+<p class="font-body text-xs text-on-surface-variant">09:15 - Security Unit Bravo redirected to secure perimeter.</p>
+</div>
+</div>
+<!-- Active Step -->
+<div class="relative">
+<div class="absolute -left-6 top-1 w-3 h-3 rounded-full bg-tertiary-container border-2 border-surface animate-pulse"></div>
+<div>
+<p class="font-headline text-sm font-bold text-tertiary">Critical Action Pending</p>
+<p class="font-body text-xs text-on-surface-variant">Awaiting command to authorize heavy repair unit deployment.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- System Status -->
+<div class="p-4 bg-surface-container-lowest rounded-xl border border-outline-variant/10 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container">verified_user</span>
+<span class="font-label text-xs uppercase tracking-wider">AI Confidence</span>
+</div>
+<span class="font-headline font-bold text-primary">98.4%</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body></html>

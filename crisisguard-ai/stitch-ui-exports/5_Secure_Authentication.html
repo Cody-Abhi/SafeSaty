@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CRISISGUARD AI | SECURE AUTHENTICATION</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#33353a",
+                        "surface-variant": "#33353a",
+                        "primary": "#9ecaff",
+                        "on-tertiary-fixed": "#410001",
+                        "on-error": "#690005",
+                        "on-surface": "#e2e2e9",
+                        "tertiary": "#ffb4a9",
+                        "on-secondary-container": "#6a4e00",
+                        "secondary-container": "#fabd00",
+                        "on-tertiary-container": "#5e0002",
+                        "inverse-surface": "#e2e2e9",
+                        "primary-fixed-dim": "#9ecaff",
+                        "on-secondary-fixed": "#261a00",
+                        "on-primary": "#003258",
+                        "surface-tint": "#9ecaff",
+                        "tertiary-container": "#ff5748",
+                        "primary-container": "#2196f3",
+                        "tertiary-fixed": "#ffdad5",
+                        "error": "#ffb4ab",
+                        "secondary": "#ffdf9e",
+                        "background": "#111318",
+                        "surface-container-lowest": "#0c0e13",
+                        "surface-container-low": "#1a1b21",
+                        "on-secondary": "#3f2e00",
+                        "inverse-on-surface": "#2e3036",
+                        "secondary-fixed-dim": "#fabd00",
+                        "surface-bright": "#37393f",
+                        "on-tertiary-fixed-variant": "#930005",
+                        "tertiary-fixed-dim": "#ffb4a9",
+                        "on-primary-fixed": "#001d36",
+                        "outline-variant": "#404752",
+                        "error-container": "#93000a",
+                        "surface": "#111318",
+                        "on-background": "#e2e2e9",
+                        "surface-container": "#1e2025",
+                        "outline": "#89919d",
+                        "on-primary-container": "#002c4f",
+                        "surface-container-high": "#282a2f",
+                        "on-primary-fixed-variant": "#00497d",
+                        "primary-fixed": "#d1e4ff",
+                        "on-error-container": "#ffdad6",
+                        "on-surface-variant": "#bfc7d4",
+                        "surface-dim": "#111318",
+                        "on-tertiary": "#690002",
+                        "secondary-fixed": "#ffdf9e",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "inverse-primary": "#0061a4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Space Grotesk"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(51, 53, 58, 0.4);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(191, 199, 212, 0.15);
+        }
+        .bg-mesh {
+            background-image: radial-gradient(circle at 2px 2px, rgba(158, 202, 255, 0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body min-h-screen flex flex-col selection:bg-primary/30">
+<!-- Background Layer -->
+<div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+<div class="absolute inset-0 bg-mesh opacity-40"></div>
+<img alt="Tactical Background" class="absolute inset-0 w-full h-full object-cover opacity-10 grayscale scale-110" data-alt="Abstract dark tactical blue geometric mesh with blurred server room aesthetics and circuit board patterns in deep navy shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh-30dMVkuMhhAb6INKWQ2eU6oLZ-DKqt5PF7lejzAW37Uhl3fUrJrhQBJmMEuFAUF_R-h26cm5DrJQi5mJhYJxRGyO6FELzQ_72BoWx8sr8mYgF2dJyOQrs9RAWshfHClOWPbEcWkuUHy9LnOajoYNM8Pe3vnEoH-D7__SfmX4iz8Ij2Qj5pLjpU_G7JoVgtf4yT-rzj6rIZc9fL9YlI9i3SzVz6rip5rKaFqSJW9-UkMbuErqtNlYebJS82kvuPPNDNDMOKrUjxp"/>
+<div class="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background"></div>
+</div>
+<!-- Content Wrapper -->
+<main class="relative z-10 flex-grow flex items-center justify-center p-6">
+<!-- Authentication Card -->
+<div class="w-full max-w-lg glass-card rounded-xl p-8 md:p-12 shadow-[0_0_60px_-15px_rgba(158,202,255,0.15)] flex flex-col gap-8">
+<!-- Brand Identity -->
+<div class="text-center space-y-2">
+<h1 class="font-headline text-2xl md:text-3xl font-bold tracking-[0.2em] text-primary">
+                    CRISISGUARD AI
+                </h1>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant/60">
+                    Mission Critical Interface // Authorization Required
+                </p>
+</div>
+<!-- Form Fields -->
+<form class="space-y-6">
+<div class="space-y-4">
+<div class="group">
+<label class="block font-label text-[11px] uppercase tracking-widest text-primary mb-2 ml-1">Personnel ID</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/40 text-lg">fingerprint</span>
+<input class="w-full bg-surface-container-lowest/50 border border-on-surface-variant/15 rounded-xl py-4 pl-12 pr-4 text-on-surface placeholder:text-on-surface-variant/30 focus:outline-none focus:ring-1 focus:ring-primary/50 focus:border-primary/50 transition-all font-body text-sm" placeholder="Enter Operator ID..." type="text"/>
+</div>
+</div>
+<div class="group">
+<label class="block font-label text-[11px] uppercase tracking-widest text-primary mb-2 ml-1">Security Token</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/40 text-lg">encrypted</span>
+<input class="w-full bg-surface-container-lowest/50 border border-on-surface-variant/15 rounded-xl py-4 pl-12 pr-4 text-on-surface placeholder:text-on-surface-variant/30 focus:outline-none focus:ring-1 focus:ring-primary/50 focus:border-primary/50 transition-all font-body text-sm" placeholder="••••••••••••" type="password"/>
+</div>
+</div>
+</div>
+<!-- Action Button -->
+<button class="w-full relative group overflow-hidden bg-gradient-to-br from-primary-container to-on-primary-fixed-variant rounded-xl py-4 flex items-center justify-center gap-3 transition-all hover:scale-[1.01] active:scale-[0.98] shadow-lg shadow-primary-container/10" type="submit">
+<span class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+<span class="font-headline font-bold tracking-[0.15em] text-white text-sm">AUTHENTICATE</span>
+<span class="material-symbols-outlined text-white text-lg group-hover:translate-x-1 transition-transform">arrow_forward_ios</span>
+</button>
+</form>
+<!-- Security Status Ticker -->
+<div class="mt-4 pt-6 border-t border-on-surface-variant/10">
+<div class="flex items-center gap-2 mb-3">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<span class="font-label text-[10px] uppercase tracking-tighter text-on-surface-variant">System Status: Active Monitoring</span>
+</div>
+<div class="bg-surface-container-lowest/80 rounded-lg p-3 font-label text-[9px] leading-relaxed space-y-1 border border-on-surface-variant/5">
+<div class="flex justify-between items-center text-primary/80">
+<span>RSA-4096 Authenticating...</span>
+<span class="text-[8px] opacity-40">0.04ms</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant/60">
+<span>Handshake Verified</span>
+<span class="material-symbols-outlined text-[10px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant/40 italic">
+<span>Establishing Secure Tunnel...</span>
+<span class="animate-pulse">_</span>
+</div>
+</div>
+</div>
+<!-- Additional Options -->
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-label uppercase tracking-widest text-on-surface-variant/50">
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-sm">help</span>
+                    Forgot Credentials?
+                </a>
+<div class="hidden md:block w-px h-3 bg-on-surface-variant/20"></div>
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-sm">vpn_key</span>
+                    Emergency Bypass
+                </a>
+</div>
+</div>
+</main>
+<!-- Footer from Shared Components -->
+<footer class="bg-[#1a1b21] w-full py-6 mt-auto relative z-10">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 gap-4">
+<div class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest text-[#bfc7d4]/50">
+                © 2024 CRISISGUARD AI. MISSION CRITICAL INTERFACE.
+            </div>
+<div class="flex gap-8">
+<a class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest text-[#bfc7d4]/50 hover:text-[#9ecaff] transition-opacity" href="#">SECURE_LOG</a>
+<a class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest text-[#bfc7d4]/50 hover:text-[#9ecaff] transition-opacity" href="#">ENCRYPTION_PROTOCOLS</a>
+<a class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest text-[#bfc7d4]/50 hover:text-[#9ecaff] transition-opacity" href="#">SYSTEM_STATUS</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,10 @@
+# ═══════════════════════════════════════════════════════════
+#  CrisisGuard AI — Kubernetes Namespace
+# ═══════════════════════════════════════════════════════════
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: crisisguard
+  labels:
+    app.kubernetes.io/part-of: crisisguard-ai
+    environment: production

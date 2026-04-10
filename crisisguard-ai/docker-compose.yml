@@ -1,0 +1,138 @@
+version: '3.8'
+
+services:
+  # ─── API Gateway ──────────────────────────────────────────
+  api-gateway:
+    build:
+      context: ./backend/api-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - REDIS_URL=redis://redis:6379
+      - ALERT_SERVICE_URL=http://alert-service:8000
+      - AI_GATEWAY_URL=http://ai-gateway:8001
+      - NOTIFICATION_SERVICE_URL=http://notification-service:3002
+      - WEBSOCKET_SERVICE_URL=http://websocket-service:3003
+    depends_on:
+      - redis
+    networks:
+      - crisisguard
+
+  # ─── Alert Service (FastAPI) ──────────────────────────────
+  alert-service:
+    build:
+      context: ./backend/alert-service
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - ENV=development
+      - REDIS_URL=redis://redis:6379
+      - GCP_PROJECT_ID=crisisguard
+      - PUBSUB_TOPIC=confirmed-alerts
+    depends_on:
+      - redis
+    networks:
+      - crisisguard
+
+  # ─── AI Gateway (FastAPI) ─────────────────────────────────
+  ai-gateway:
+    build:
+      context: ./backend/ai-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    environment:
+      - ENV=development
+      - GEMINI_MODEL=gemini-2.0-flash
+    env_file:
+      - .env
+    networks:
+      - crisisguard
+
+  # ─── WebSocket Service (Node.js) ──────────────────────────
+  websocket-service:
+    build:
+      context: ./backend/websocket-service
+      dockerfile: Dockerfile
+    ports:
+      - "3003:3003"
+    environment:
+      - NODE_ENV=development
+      - PORT=3003
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redis
+    networks:
+      - crisisguard
+
+  # ─── Notification Service (Node.js) ───────────────────────
+  notification-service:
+    build:
+      context: ./backend/notification-service
+      dockerfile: Dockerfile
+    ports:
+      - "3004:3004"
+    environment:
+      - NODE_ENV=development
+      - PORT=3004
+      - WS_SERVICE_URL=http://websocket-service:3003
+    env_file:
+      - .env
+    depends_on:
+      - websocket-service
+    networks:
+      - crisisguard
+
+  # ─── Evacuation Engine (FastAPI) ────────────────────────────
+  evacuation-engine:
+    build:
+      context: ./backend/evacuation-engine
+      dockerfile: Dockerfile
+    ports:
+      - "8002:8002"
+    environment:
+      - ENV=development
+    networks:
+      - crisisguard
+
+  # ─── Emergency Services Gateway (Node.js) ──────────────────
+  emergency-services-gateway:
+    build:
+      context: ./backend/emergency-services-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "3005:3005"
+    environment:
+      - NODE_ENV=development
+      - PORT=3005
+    env_file:
+      - .env
+    networks:
+      - crisisguard
+
+  # ─── Redis ────────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - crisisguard
+
+networks:
+  crisisguard:
+    driver: bridge
+
+volumes:
+  redis-data:

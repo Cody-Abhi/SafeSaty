@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CrisisGuard AI | Evacuation Control</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#37393f",
+                    "on-tertiary-container": "#5e0002",
+                    "on-surface": "#e2e2e9",
+                    "tertiary": "#ffb4a9",
+                    "on-primary-fixed": "#001d36",
+                    "surface-dim": "#111318",
+                    "tertiary-fixed": "#ffdad5",
+                    "surface-container-highest": "#33353a",
+                    "surface-container": "#1e2025",
+                    "surface-container-low": "#1a1b21",
+                    "background": "#111318",
+                    "on-background": "#e2e2e9",
+                    "inverse-surface": "#e2e2e9",
+                    "tertiary-container": "#ff5748",
+                    "on-tertiary": "#690002",
+                    "secondary-fixed-dim": "#fabd00",
+                    "outline": "#89919d",
+                    "inverse-primary": "#0061a4",
+                    "secondary": "#ffdf9e",
+                    "on-secondary-container": "#6a4e00",
+                    "on-surface-variant": "#bfc7d4",
+                    "surface-tint": "#9ecaff",
+                    "on-secondary-fixed": "#261a00",
+                    "surface": "#111318",
+                    "outline-variant": "#404752",
+                    "primary-fixed-dim": "#9ecaff",
+                    "on-secondary": "#3f2e00",
+                    "primary-fixed": "#d1e4ff",
+                    "on-tertiary-fixed-variant": "#930005",
+                    "surface-container-lowest": "#0c0e13",
+                    "on-primary-fixed-variant": "#00497d",
+                    "on-error": "#690005",
+                    "tertiary-fixed-dim": "#ffb4a9",
+                    "on-primary": "#003258",
+                    "secondary-fixed": "#ffdf9e",
+                    "error-container": "#93000a",
+                    "primary": "#9ecaff",
+                    "inverse-on-surface": "#2e3036",
+                    "error": "#ffb4ab",
+                    "on-error-container": "#ffdad6",
+                    "primary-container": "#2196f3",
+                    "on-secondary-fixed-variant": "#5b4300",
+                    "surface-container-high": "#282a2f",
+                    "on-tertiary-fixed": "#410001",
+                    "secondary-container": "#fabd00",
+                    "on-primary-container": "#002c4f",
+                    "surface-variant": "#33353a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Manrope"],
+                    "label": ["Space Grotesk"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(51, 53, 58, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .vignette-map {
+            mask-image: radial-gradient(circle, black 40%, transparent 80%);
+            -webkit-mask-image: radial-gradient(circle, black 40%, transparent 80%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body overflow-hidden">
+<!-- TopNavBar Integration -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center h-16 px-8 w-full bg-[#111318]/80 backdrop-blur-xl shadow-[0_0_40px_rgba(33,150,243,0.06)]">
+<div class="text-xl font-bold tracking-widest text-[#9ecaff] uppercase font-['Space_Grotesk']">
+            CRISISGUARD AI
+        </div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-8 font-['Space_Grotesk'] tracking-tight">
+<a class="text-[#bfc7d4] hover:text-white hover:bg-[#33353a]/50 transition-colors px-2 py-1" href="#">Dashboard</a>
+<a class="text-[#9ecaff] border-b-2 border-[#9ecaff] pb-1" href="#">Evacuation</a>
+<a class="text-[#bfc7d4] hover:text-white hover:bg-[#33353a]/50 transition-colors px-2 py-1" href="#">Personnel</a>
+</div>
+<div class="flex items-center gap-4 text-[#9ecaff]">
+<span class="material-symbols-outlined cursor-pointer hover:bg-[#33353a]/50 p-2 rounded-full transition-all">notifications_active</span>
+<span class="material-symbols-outlined cursor-pointer hover:bg-[#33353a]/50 p-2 rounded-full transition-all">settings</span>
+<span class="material-symbols-outlined cursor-pointer hover:bg-[#33353a]/50 p-2 rounded-full transition-all">account_circle</span>
+</div>
+</div>
+</nav>
+<!-- SideNavBar Integration -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 bg-[#1a1b21] flex flex-col py-6 px-4 gap-4 z-40 hidden md:flex">
+<div class="mb-4 px-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container">shield_person</span>
+</div>
+<div>
+<h3 class="font-headline text-sm font-bold tracking-wider text-[#9ecaff]">STRAT-COM</h3>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Active Protocol: Delta-9</p>
+</div>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-transform active:scale-95 text-[#bfc7d4] hover:bg-[#33353a] hover:text-[#9ecaff] font-['Space_Grotesk'] text-sm uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined">dashboard</span> Command
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-transform active:scale-95 text-[#9ecaff] bg-[#33353a] font-bold border-r-4 border-[#2196f3] font-['Space_Grotesk'] text-sm uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined">emergency_share</span> Evacuation
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-transform active:scale-95 text-[#bfc7d4] hover:bg-[#33353a] hover:text-[#9ecaff] font-['Space_Grotesk'] text-sm uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined">route</span> Pathfinding
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-transform active:scale-95 text-[#bfc7d4] hover:bg-[#33353a] hover:text-[#9ecaff] font-['Space_Grotesk'] text-sm uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined">groups</span> Assembly
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-transform active:scale-95 text-[#bfc7d4] hover:bg-[#33353a] hover:text-[#9ecaff] font-['Space_Grotesk'] text-sm uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined">history</span> History
+            </a>
+</nav>
+<div class="mt-auto flex flex-col gap-1 border-t border-outline-variant/10 pt-4">
+<button class="w-full py-3 mb-4 rounded-xl bg-error-container text-on-error-container font-headline text-xs font-bold tracking-widest hover:brightness-110 transition-all uppercase">
+                EMERGENCY OVERRIDE
+            </button>
+<a class="flex items-center gap-3 px-4 py-2 rounded-xl text-[#bfc7d4] hover:bg-[#33353a] hover:text-[#9ecaff] font-['Space_Grotesk'] text-sm uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined">help_center</span> Support
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-xl text-[#bfc7d4] hover:bg-[#33353a] hover:text-[#9ecaff] font-['Space_Grotesk'] text-sm uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined">logout</span> Log Out
+            </a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-0 md:ml-64 mt-16 h-[calc(100vh-64px)] relative overflow-hidden bg-background">
+<!-- Center Architectural Map -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="relative w-full h-full max-w-5xl max-h-[80%] vignette-map">
+<img alt="Architectural Floor Plan" class="w-full h-full object-contain opacity-40 mix-blend-lighten" data-alt="high-tech 2D architectural blueprint of a large facility with glowing green and red path overlays in a dark tactical interface style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBf43rEh_qjZBU203bIZ0e7ezFhOFQq1qtIkXN06BF-yAtiWVLTcM_tE4lGcVt01YdjLM3lGnd7FYlU3t42lmRXiOPr371tX5Gbqj1jc_VAmESOSKS2Ub5gQjIcGzEv9EHt59FFqScjdrkamuldhobvDu11lVSYV1Ngvtv19qbtW7XHlbNALIeB7fYashrAabX5jMiGOLmRNDarc3JnA-FHPnFeuQAWooWOH9ndj1GcjD5Hu0DTdX3Ad6nE8k4Esbxj-RichW-ZK9j2"/>
+<!-- SVG Overlay for Paths -->
+<svg class="absolute inset-0 w-full h-full" viewbox="0 0 1000 1000">
+<!-- Hazard Zones -->
+<circle cx="720" cy="400" fill="rgba(255, 180, 171, 0.1)" r="80" stroke="#ffb4ab" stroke-dasharray="10 5" stroke-width="2"></circle>
+<circle cx="300" cy="650" fill="rgba(255, 180, 171, 0.1)" r="60" stroke="#ffb4ab" stroke-dasharray="10 5" stroke-width="2"></circle>
+<!-- Blocked Paths -->
+<path d="M 650 400 L 790 400" stroke="#ffb4ab" stroke-dasharray="2 10" stroke-linecap="round" stroke-width="6"></path>
+<path d="M 280 600 L 320 700" stroke="#ffb4ab" stroke-dasharray="2 10" stroke-linecap="round" stroke-width="6"></path>
+<!-- Safe Paths -->
+<path class="drop-shadow-[0_0_8px_rgba(34,197,94,0.6)]" d="M 150 200 L 450 200 L 450 500 L 850 500" fill="none" stroke="#22c55e" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path>
+<path class="drop-shadow-[0_0_8px_rgba(34,197,94,0.6)]" d="M 150 200 L 150 800 L 850 800" fill="none" stroke="#22c55e" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path>
+<!-- Status Markers -->
+<g transform="translate(850, 500)">
+<circle fill="#22c55e" r="12"></circle>
+<text class="font-headline text-[14px] font-bold" fill="#22c55e" x="20" y="5">EXIT A</text>
+</g>
+<g transform="translate(850, 800)">
+<circle fill="#22c55e" r="12"></circle>
+<text class="font-headline text-[14px] font-bold" fill="#22c55e" x="20" y="5">EXIT B</text>
+</g>
+</svg>
+</div>
+</div>
+<!-- Header Info Overlay -->
+<div class="absolute top-8 left-8 z-10">
+<h1 class="font-headline text-3xl font-bold tracking-tight text-white uppercase">Evacuation Control</h1>
+<div class="flex items-center gap-3 mt-2">
+<span class="flex h-2 w-2 rounded-full bg-[#22c55e] animate-pulse"></span>
+<p class="font-label text-xs tracking-widest text-[#9ecaff] uppercase">System Live: Processing Real-Time Occupancy</p>
+</div>
+</div>
+<!-- Right Floating Panel: Active Assembly Points -->
+<div class="absolute top-8 right-8 w-80 glass-panel p-6 rounded-xl border border-outline-variant/10 shadow-2xl">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline text-sm font-bold uppercase tracking-widest text-[#9ecaff]">Active Assembly Points</h2>
+<span class="material-symbols-outlined text-[#9ecaff] text-lg">groups</span>
+</div>
+<div class="space-y-6">
+<!-- Location 1 -->
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="font-label text-xs text-on-surface uppercase">North Courtyard</span>
+<span class="font-label text-xs text-primary font-bold">45 / 100</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 45%;"></div>
+</div>
+</div>
+<!-- Location 2 -->
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="font-label text-xs text-on-surface uppercase">Main Lobby</span>
+<span class="font-label text-xs text-secondary font-bold">82 / 100</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary" style="width: 82%;"></div>
+</div>
+</div>
+<!-- Location 3 -->
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="font-label text-xs text-on-surface uppercase">East Gate</span>
+<span class="font-label text-xs text-primary font-bold">12 / 50</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 24%;"></div>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-4 border-t border-outline-variant/10">
+<div class="flex justify-between items-center text-[10px] font-label text-on-surface-variant uppercase tracking-tighter">
+<span>Total Evacuated</span>
+<span class="text-white font-bold">139 Persons</span>
+</div>
+</div>
+</div>
+<!-- Bottom Left Floating Panel: Pathfinding Status -->
+<div class="absolute bottom-8 left-8 w-96 glass-panel p-5 rounded-xl border border-outline-variant/10">
+<h2 class="font-headline text-xs font-bold uppercase tracking-widest text-[#9ecaff] mb-4">Pathfinding Status</h2>
+<div class="h-40 overflow-y-auto space-y-2 pr-2 custom-scrollbar">
+<div class="flex gap-3 text-[10px] leading-relaxed">
+<span class="text-outline font-mono">[14:22:01]</span>
+<span class="text-on-surface-variant uppercase">Recalculating route avoiding Sector B...</span>
+</div>
+<div class="flex gap-3 text-[10px] leading-relaxed">
+<span class="text-outline font-mono">[14:21:45]</span>
+<span class="text-primary uppercase font-bold">Optimal path found for Floor 4 West.</span>
+</div>
+<div class="flex gap-3 text-[10px] leading-relaxed">
+<span class="text-outline font-mono">[14:21:12]</span>
+<span class="text-tertiary uppercase">Obstruction detected: Structural failure Sector G.</span>
+</div>
+<div class="flex gap-3 text-[10px] leading-relaxed">
+<span class="text-outline font-mono">[14:20:55]</span>
+<span class="text-on-surface-variant uppercase">Updating smart-signage on stairwell 3...</span>
+</div>
+<div class="flex gap-3 text-[10px] leading-relaxed">
+<span class="text-outline font-mono">[14:20:30]</span>
+<span class="text-on-surface-variant uppercase">Lidar sweep complete. No thermal anomalies.</span>
+</div>
+</div>
+</div>
+<!-- Bottom Center Action -->
+<div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4">
+<button class="group relative flex items-center gap-4 px-12 py-5 rounded-full bg-gradient-to-r from-[#93000a] to-[#ff5748] shadow-[0_0_30px_rgba(147,0,10,0.4)] hover:shadow-[0_0_50px_rgba(255,87,72,0.6)] transition-all duration-300">
+<span class="material-symbols-outlined text-white text-3xl font-variation-settings-'FILL' 1">campaign</span>
+<span class="font-headline text-lg font-extrabold tracking-widest text-white uppercase">Broadcast Evacuation Order</span>
+<div class="absolute inset-0 rounded-full border-2 border-white/20 scale-105 group-hover:scale-110 transition-transform duration-500"></div>
+</button>
+<p class="font-label text-[10px] text-tertiary uppercase tracking-widest bg-tertiary/10 px-4 py-1 rounded-full border border-tertiary/20">Requires Tier 2 Commander Authorization</p>
+</div>
+<!-- Background Aesthetic Elements -->
+<div class="absolute bottom-4 right-4 flex gap-8 items-center opacity-20 pointer-events-none">
+<div class="flex flex-col items-end">
+<span class="font-label text-[10px] uppercase">Telemetry Latency</span>
+<span class="font-headline text-xl font-bold">0.042ms</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label text-[10px] uppercase">Node Density</span>
+<span class="font-headline text-xl font-bold">1,244/km²</span>
+</div>
+</div>
+</main>
+</body></html>

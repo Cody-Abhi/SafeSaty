@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Personnel Management | CrisisGuard AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#37393f",
+                        "tertiary-container": "#ff5748",
+                        "on-tertiary": "#690002",
+                        "inverse-primary": "#0061a4",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "error-container": "#93000a",
+                        "secondary-container": "#fabd00",
+                        "outline": "#89919d",
+                        "on-surface-variant": "#bfc7d4",
+                        "surface-container": "#1e2025",
+                        "on-primary-fixed-variant": "#00497d",
+                        "outline-variant": "#404752",
+                        "error": "#ffb4ab",
+                        "on-tertiary-container": "#5e0002",
+                        "surface-container-high": "#282a2f",
+                        "inverse-surface": "#e2e2e9",
+                        "secondary": "#ffdf9e",
+                        "on-primary": "#003258",
+                        "on-secondary-fixed": "#261a00",
+                        "tertiary": "#ffb4a9",
+                        "primary-fixed": "#d1e4ff",
+                        "primary-fixed-dim": "#9ecaff",
+                        "on-primary-fixed": "#001d36",
+                        "surface-container-low": "#1a1b21",
+                        "on-background": "#e2e2e9",
+                        "surface-variant": "#33353a",
+                        "on-surface": "#e2e2e9",
+                        "on-secondary": "#3f2e00",
+                        "on-tertiary-fixed-variant": "#930005",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed": "#410001",
+                        "surface-dim": "#111318",
+                        "primary-container": "#2196f3",
+                        "surface-tint": "#9ecaff",
+                        "on-secondary-container": "#6a4e00",
+                        "surface-container-lowest": "#0c0e13",
+                        "secondary-fixed": "#ffdf9e",
+                        "secondary-fixed-dim": "#fabd00",
+                        "on-primary-container": "#002c4f",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed": "#ffdad5",
+                        "surface-container-highest": "#33353a",
+                        "inverse-on-surface": "#2e3036",
+                        "background": "#111318",
+                        "surface": "#111318",
+                        "tertiary-fixed-dim": "#ffb4a9",
+                        "primary": "#9ecaff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Space Grotesk"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(51, 53, 58, 0.4);
+            backdrop-filter: blur(20px);
+        }
+        body {
+            background-color: #111318;
+            color: #e2e2e9;
+            font-family: 'Manrope', sans-serif;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="overflow-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-[#111318]/80 backdrop-blur-xl flex justify-between items-center px-6 h-16 w-full shadow-[0_0_40px_rgba(33,150,243,0.06)]">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tighter text-[#9ecaff] uppercase font-['Space_Grotesk']">CrisisGuard AI</span>
+<nav class="hidden md:flex gap-6 items-center h-full">
+<a class="text-[#bfc7d4] font-['Space_Grotesk'] tracking-tight transition-colors duration-200 hover:text-[#9ecaff]" href="#">Command</a>
+<a class="text-[#9ecaff] border-b-2 border-[#9ecaff] pb-1 font-['Space_Grotesk'] tracking-tight" href="#">Personnel</a>
+<a class="text-[#bfc7d4] font-['Space_Grotesk'] tracking-tight transition-colors duration-200 hover:text-[#9ecaff]" href="#">Resources</a>
+<a class="text-[#bfc7d4] font-['Space_Grotesk'] tracking-tight transition-colors duration-200 hover:text-[#9ecaff]" href="#">Intelligence</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-[#bfc7d4] hover:bg-[#33353a] transition-colors duration-200 active:scale-95 rounded-lg">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-[#bfc7d4] hover:bg-[#33353a] transition-colors duration-200 active:scale-95 rounded-lg">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<img alt="Chief Controller Profile" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="portrait of a professional security operations center controller in a dark environment with blue ambient screen light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5rImW0xRoAygqERs5k7qKyky0Qru6gVlY_OG794AE9mpO3LSUP3WzcnAFbphAt4QDTm4cKeR3UqVvmW3rW38WF4b2iRG7Z6ht15R8NHZdURkv0QFLMHFVtJYPNOvs_I55PAXCHbj1fzPXxa7XvDQYroAEhA90B7ofSLHfH9BP6RDolJD53xtxd_TG8f2Lx82G1Im0y0ZFH5jvTiSoap5n62Uc-8P5jBhDGnZ16jTM5FpB1bNfXakfRCFlCHPtVJzM-PuVpxTzwgGL"/>
+</div>
+</header>
+<!-- SideNavBar (Hidden on small, persistent on large) -->
+<aside class="fixed left-0 top-0 h-full w-64 z-40 bg-[#1a1b21] flex flex-col py-20 px-4 h-full hidden lg:flex">
+<div class="mb-10 px-4">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<h2 class="font-['Space_Grotesk'] text-sm uppercase tracking-widest text-[#9ecaff]">Tactical Node 01</h2>
+</div>
+<p class="font-['Space_Grotesk'] text-[10px] text-[#bfc7d4]/60 uppercase mt-1">Active Duty</p>
+</div>
+<div class="flex-1 space-y-1">
+<a class="flex items-center gap-4 py-3 px-4 text-[#bfc7d4]/60 hover:text-[#9ecaff] hover:bg-[#1a1b21] transition-all hover:translate-x-1 font-['Space_Grotesk'] text-sm uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Command
+            </a>
+<a class="flex items-center gap-4 py-3 px-4 text-[#9ecaff] bg-[#33353a] rounded-r-full mr-4 transition-all hover:translate-x-1 font-['Space_Grotesk'] text-sm uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined">badge</span>
+                Personnel
+            </a>
+<a class="flex items-center gap-4 py-3 px-4 text-[#bfc7d4]/60 hover:text-[#9ecaff] hover:bg-[#1a1b21] transition-all hover:translate-x-1 font-['Space_Grotesk'] text-sm uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                Resources
+            </a>
+<a class="flex items-center gap-4 py-3 px-4 text-[#bfc7d4]/60 hover:text-[#9ecaff] hover:bg-[#1a1b21] transition-all hover:translate-x-1 font-['Space_Grotesk'] text-sm uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined">psychology</span>
+                Intelligence
+            </a>
+<a class="flex items-center gap-4 py-3 px-4 text-[#bfc7d4]/60 hover:text-[#9ecaff] hover:bg-[#1a1b21] transition-all hover:translate-x-1 font-['Space_Grotesk'] text-sm uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined">history</span>
+                Logs
+            </a>
+</div>
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold py-3 px-4 rounded-xl mb-8 active:scale-95 transition-transform font-['Space_Grotesk'] uppercase text-xs tracking-widest">
+            Deploy Response
+        </button>
+<div class="space-y-1 mt-auto">
+<a class="flex items-center gap-4 py-2 px-4 text-[#bfc7d4]/60 hover:text-[#9ecaff] font-['Space_Grotesk'] text-xs uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined text-sm">help_outline</span>
+                Help
+            </a>
+<a class="flex items-center gap-4 py-2 px-4 text-[#bfc7d4]/60 hover:text-[#9ecaff] font-['Space_Grotesk'] text-xs uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined text-sm">logout</span>
+                Logout
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="lg:ml-64 pt-16 h-screen flex flex-col lg:flex-row overflow-hidden">
+<!-- Center Grid Column -->
+<section class="flex-1 overflow-y-auto p-6 no-scrollbar">
+<!-- Page Header & Filter -->
+<div class="mb-10">
+<h1 class="font-headline text-3xl font-bold tracking-tight mb-6">Staff Directory</h1>
+<div class="flex flex-col md:flex-row gap-4">
+<div class="flex-1 relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl py-4 pl-12 text-on-surface-variant focus:ring-1 focus:ring-primary-container focus:bg-surface-container-highest transition-all font-body" placeholder="Search staff ID or name..." type="text"/>
+</div>
+<div class="flex gap-2">
+<select class="bg-surface-container-low border border-outline-variant/15 text-on-surface-variant rounded-xl px-4 py-2 font-headline text-xs uppercase tracking-widest focus:ring-primary focus:border-primary appearance-none pr-10">
+<option>Role: All</option>
+<option>Security</option>
+<option>Medical</option>
+<option>Fire</option>
+<option>Maintenance</option>
+</select>
+<select class="bg-surface-container-low border border-outline-variant/15 text-on-surface-variant rounded-xl px-4 py-2 font-headline text-xs uppercase tracking-widest focus:ring-primary focus:border-primary appearance-none pr-10">
+<option>Zone: All</option>
+<option>Level 01</option>
+<option>Level 02</option>
+<option>Basement</option>
+<option>Exterior</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Profile Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Card 1: Active -->
+<div class="glass-panel p-5 rounded-xl transition-all duration-300 hover:bg-surface-bright group border border-outline-variant/5">
+<div class="flex items-start gap-4 mb-4">
+<div class="relative">
+<img alt="Marcus Thorne" class="w-16 h-16 rounded-xl object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="portrait of a man with serious expression wearing a dark tactical security uniform, studio lighting with blue tint" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl_6q2dkCdxzLAwd91E93WteZEdwxKeatGwkwzg_xxtxcprFOEUbDGeKr1I0Pq44b0Uj3Pris5pO6bd-9cfOs5cqZqMJLYAYEZcvc8zn3PC88iN5WR0Y5mzrCQm-a9stzkwRSegVRJIhs2wMarlzkyO2xtFCmR2A4nX9VJfM_y93uXULVilKrrVPkNDGCaTSPnWXKMF_pJdQA5Qzo3-6FBSru68yoTNNSvlKJDiAE_pV7EOk6U9VWt2-Jr--tzVyzcg6c4_LzuJ_c5"/>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-background rounded-full flex items-center justify-center">
+<div class="w-3 h-3 bg-primary rounded-full"></div>
+</div>
+</div>
+<div class="flex-1">
+<h3 class="font-headline font-bold text-lg text-on-surface leading-tight">Marcus Thorne</h3>
+<p class="font-body text-sm text-outline mb-1">Chief of Security</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">location_on</span>
+<span class="font-body text-xs text-on-surface-variant">Zone A - Floor 4</span>
+</div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface-container-highest text-primary py-2 rounded-full font-headline text-[10px] uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">map</span>
+                            Live Location
+                        </button>
+<button class="p-2 bg-surface-container-highest text-outline rounded-full hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-lg">chat_bubble</span>
+</button>
+</div>
+</div>
+<!-- Card 2: Dispatched -->
+<div class="glass-panel p-5 rounded-xl transition-all duration-300 hover:bg-surface-bright group border border-outline-variant/5">
+<div class="flex items-start gap-4 mb-4">
+<div class="relative">
+<img alt="Elena Vance" class="w-16 h-16 rounded-xl object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="portrait of a focused professional woman in medical scrubs, high tech medical bay background, cool lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbs7r63Q3-OylwWe-1PfLrbgYO5JspcINTSAIn2W8BKLnakxst0ADjzmh1JKROjG4-tWc5Dgx6LSJczr4q8p2s0OcgvYUxpSW1g-c--AqJawjedhUaRWpWWFWFgh00-JWSQ1KqBySnTgwXynGVbBwbGhQWrrPhDzLUIDK-4jkdC6pqM5JOpQLhTs7zLs2raSAIzLPGYZhxpeO-EU-VlUrBcZOezwIU3BjUvzIYLIUcDDY-1MVyq2QKq8Ruew2k_AlQhlBcUrHc0yeg"/>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-background rounded-full flex items-center justify-center">
+<div class="w-3 h-3 bg-tertiary-container rounded-full"></div>
+</div>
+</div>
+<div class="flex-1">
+<h3 class="font-headline font-bold text-lg text-on-surface leading-tight">Elena Vance</h3>
+<p class="font-body text-sm text-outline mb-1">Trauma Surgeon</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-tertiary-container">warning</span>
+<span class="font-body text-xs text-on-surface-variant">Emergency Bay 02</span>
+</div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface-container-highest text-primary py-2 rounded-full font-headline text-[10px] uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">map</span>
+                            Live Location
+                        </button>
+<button class="p-2 bg-surface-container-highest text-outline rounded-full hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-lg">chat_bubble</span>
+</button>
+</div>
+</div>
+<!-- Card 3: On-Break -->
+<div class="glass-panel p-5 rounded-xl transition-all duration-300 hover:bg-surface-bright group border border-outline-variant/5">
+<div class="flex items-start gap-4 mb-4">
+<div class="relative">
+<img alt="David Chen" class="w-16 h-16 rounded-xl object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="portrait of an engineer with short dark hair, wearing a dark work utility shirt, soft focus background of industrial machinery" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEvE_xYtFpRgZvxJLVbeJS43AjjlUt7Cn5fYgmgHxLRNyC5gtUd602id2beHgC7e6kyhcq35iraAvFfBvphCAvXGQNPEj4SaP8O54Z4W6r0aCRHE58vYo8BL2XOXaRAdK-qQtxtbYAQlDD60XQq3skQezKn7PumCKhDKfCxmfWJ3NUxSFGvj1aylE5_Q8-1DZI3FYWfjqyf8ofVpYyb-L7iTL31z1lNi2cqArzYDzv44yAypS6ifXGurs6I3f2hPY0JfclV3Zkga7v"/>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-background rounded-full flex items-center justify-center">
+<div class="w-3 h-3 bg-primary-container rounded-full"></div>
+</div>
+</div>
+<div class="flex-1">
+<h3 class="font-headline font-bold text-lg text-on-surface leading-tight">David Chen</h3>
+<p class="font-body text-sm text-outline mb-1">Systems Engineer</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary-container">bed</span>
+<span class="font-body text-xs text-on-surface-variant">Communal Node - L2</span>
+</div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface-container-highest text-primary py-2 rounded-full font-headline text-[10px] uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">map</span>
+                            Live Location
+                        </button>
+<button class="p-2 bg-surface-container-highest text-outline rounded-full hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-lg">chat_bubble</span>
+</button>
+</div>
+</div>
+<!-- Card 4: Active -->
+<div class="glass-panel p-5 rounded-xl transition-all duration-300 hover:bg-surface-bright group border border-outline-variant/5">
+<div class="flex items-start gap-4 mb-4">
+<div class="relative">
+<img alt="Sarah Jenkins" class="w-16 h-16 rounded-xl object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="professional woman in late 30s with analytical expression, dark clothing, blurred data screens in background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAd2vEtcywaPRNZyDSz7E3WTxCC7-dTZAdWt_wSHmiyXO0URZPP7nhVQBiAlitfRmuHG20lEETdBjfIJ7vY1rtZpCXiowytVGHaPBWsy2_tQ3Hr1zSN29QASh82TlZ7eM8Dpkf7VXbg7ZgCXCmj_XNfHlFHnHoml8d6m7tftWTl5EEJr7u6OB9proTKYzCEDUcsXdpFnZtQoLVGDJS5M9_zAesF0RAFCanjMSlRCNdZdDQEmTX7lLrk_XOra9LJrdIciOkWKN7273wK"/>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-background rounded-full flex items-center justify-center">
+<div class="w-3 h-3 bg-primary rounded-full"></div>
+</div>
+</div>
+<div class="flex-1">
+<h3 class="font-headline font-bold text-lg text-on-surface leading-tight">Sarah Jenkins</h3>
+<p class="font-body text-sm text-outline mb-1">Intelligence Analyst</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">location_on</span>
+<span class="font-body text-xs text-on-surface-variant">Server Room 01</span>
+</div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface-container-highest text-primary py-2 rounded-full font-headline text-[10px] uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">map</span>
+                            Live Location
+                        </button>
+<button class="p-2 bg-surface-container-highest text-outline rounded-full hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-lg">chat_bubble</span>
+</button>
+</div>
+</div>
+<!-- Card 5: Active -->
+<div class="glass-panel p-5 rounded-xl transition-all duration-300 hover:bg-surface-bright group border border-outline-variant/5">
+<div class="flex items-start gap-4 mb-4">
+<div class="relative">
+<img alt="Kaito Sato" class="w-16 h-16 rounded-xl object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="portrait of an athletic man in a fire rescue uniform, industrial setting with smoky ambient atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmW7dNL77-8QvMbH6MbEndvXItMimWkpl25UkrOSm6uQkIxEvxGSn4oG8uiqFbv636kArA9WaBhREIvJENpC8Pmk81AbTy5bygxNL9lp1Oht9uRFPx-0rp24_nlRu3OnkU9cwCSZGmo0XBzxAd_-DAu_gK3Wxc-IaX2biZLrgfO4k_q-FIFhmLnR2tm5KVQbYTPIOFKgkczbVi1fDObv331usyCUVIrFfDOUBOxpiFyXkvBwvZbRhs1pm7weXZyc1TDFs6RlPDM_ac"/>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-background rounded-full flex items-center justify-center">
+<div class="w-3 h-3 bg-primary rounded-full"></div>
+</div>
+</div>
+<div class="flex-1">
+<h3 class="font-headline font-bold text-lg text-on-surface leading-tight">Kaito Sato</h3>
+<p class="font-body text-sm text-outline mb-1">Fire Response</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">location_on</span>
+<span class="font-body text-xs text-on-surface-variant">Hangar Deck 4</span>
+</div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface-container-highest text-primary py-2 rounded-full font-headline text-[10px] uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">map</span>
+                            Live Location
+                        </button>
+<button class="p-2 bg-surface-container-highest text-outline rounded-full hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-lg">chat_bubble</span>
+</button>
+</div>
+</div>
+<!-- Card 6: Dispatched -->
+<div class="glass-panel p-5 rounded-xl transition-all duration-300 hover:bg-surface-bright group border border-outline-variant/5">
+<div class="flex items-start gap-4 mb-4">
+<div class="relative">
+<img alt="Riley Cooper" class="w-16 h-16 rounded-xl object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="portrait of a focused woman in a high-vis technician vest, blue technical background, soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDp4x7ZoFIjNQZcNt7QybUOU3hFcncmrgKDM5VRIcrWKZ2-YNzMQYJkRzpMRbSv38VM9iZ4gyVydRnXzxt6zjSihXXYqYzmD1xU-MJVJjCgpT-XqPlk6Ho15ITRyEIBN_LmwesBmZGrl7PbTy82kp_ywPnRiaBgIsSp1APQTJXK72Ba-4VoqVgEJU04wwAk4WdRCeWMFxXbCfVz0IGOyeZOg1ZRIq1_RloEzROi4ZWGauDomNqxbvuOlGocT4A898QfbDIZ80on2zNW"/>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-background rounded-full flex items-center justify-center">
+<div class="w-3 h-3 bg-tertiary-container rounded-full"></div>
+</div>
+</div>
+<div class="flex-1">
+<h3 class="font-headline font-bold text-lg text-on-surface leading-tight">Riley Cooper</h3>
+<p class="font-body text-sm text-outline mb-1">Hazmat Specialist</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-tertiary-container">priority_high</span>
+<span class="font-body text-xs text-on-surface-variant">Bio-containment L3</span>
+</div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface-container-highest text-primary py-2 rounded-full font-headline text-[10px] uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">map</span>
+                            Live Location
+                        </button>
+<button class="p-2 bg-surface-container-highest text-outline rounded-full hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-lg">chat_bubble</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Sidebar (Resource Stats) -->
+<aside class="w-full lg:w-80 bg-surface-container-low p-6 flex flex-col gap-8 overflow-y-auto no-scrollbar">
+<div>
+<h2 class="font-headline text-lg font-bold uppercase tracking-widest mb-6">Resource Allocation</h2>
+<!-- Circular Charts Simulation -->
+<div class="space-y-8">
+<!-- Duty Chart -->
+<div class="flex flex-col items-center">
+<div class="relative w-40 h-40 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90">
+<circle cx="80" cy="80" fill="transparent" r="70" stroke="rgba(158, 202, 255, 0.1)" stroke-width="12"></circle>
+<circle cx="80" cy="80" fill="transparent" r="70" stroke="url(#primaryGradient)" stroke-dasharray="440" stroke-dashoffset="88" stroke-linecap="round" stroke-width="12"></circle>
+<defs>
+<lineargradient id="primaryGradient" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#9ecaff"></stop>
+<stop offset="100%" stop-color="#2196f3"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="font-headline text-3xl font-bold">82%</span>
+<span class="font-label text-[10px] uppercase tracking-widest text-outline">On Duty</span>
+</div>
+</div>
+<p class="font-body text-xs text-outline text-center mt-4 max-w-[180px]">42/50 personnel currently operational on site.</p>
+</div>
+<!-- Dispatch Chart -->
+<div class="flex flex-col items-center">
+<div class="relative w-40 h-40 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90">
+<circle cx="80" cy="80" fill="transparent" r="70" stroke="rgba(255, 87, 72, 0.1)" stroke-width="12"></circle>
+<circle cx="80" cy="80" fill="transparent" r="70" stroke="#ff5748" stroke-dasharray="440" stroke-dashoffset="330" stroke-linecap="round" stroke-width="12"></circle>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="font-headline text-3xl font-bold">25%</span>
+<span class="font-label text-[10px] uppercase tracking-widest text-outline">Dispatched</span>
+</div>
+</div>
+<p class="font-body text-xs text-outline text-center mt-4 max-w-[180px]">12 active field deployments in progress.</p>
+</div>
+</div>
+</div>
+<!-- Mini Map Module -->
+<div class="mt-4">
+<h3 class="font-headline text-xs font-bold uppercase tracking-widest text-[#9ecaff] mb-4">Node Connectivity</h3>
+<div class="rounded-xl overflow-hidden h-40 bg-surface-container-highest relative group">
+<img alt="Node Topology" class="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-1000" data-alt="abstract top-down view of a futuristic city grid with glowing blue lines and data points, tactical map style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBleEyxMRzY7WmtPr2raf4AYI7CKQ_6zmFh0QmYQp7AAsSxSrlpxgXMeyMkzSBaeEsz9fTuMWUm7NhDN9m2Ep2qG9cKHTaC7BMkWIQ2ukvBOeqQRrkKpxr6dP0J4te4FxqRUf4fzzgjTXG7FW8R6psCvOyuGorMzCv5zJjoMK4qzFm6qQfE9Vp9zOD-bCbQwgiFexTdjtLvrngEcwnNcLTWSFBArjNBYR5FxDVTDpSmA4fpX5C92NuCzVJSEW3KZgZP2CjBCqeMAvnr"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low to-transparent"></div>
+<div class="absolute top-2 right-2 flex gap-1">
+<div class="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_#9ecaff]"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-primary opacity-50"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-primary opacity-30"></div>
+</div>
+<div class="absolute bottom-3 left-4">
+<p class="font-headline text-[10px] font-bold uppercase tracking-widest">Sector Gamma-9</p>
+<p class="font-body text-[10px] text-outline">L3 Containment Wing</p>
+</div>
+</div>
+</div>
+<!-- Operational Alerts -->
+<div class="mt-4 bg-surface-container-highest/30 rounded-xl p-4">
+<h3 class="font-headline text-[10px] font-bold uppercase tracking-widest text-tertiary-container mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">campaign</span>
+                    Active Protocols
+                </h3>
+<ul class="space-y-3">
+<li class="flex items-start gap-3">
+<div class="w-1 h-1 rounded-full bg-outline-variant mt-1.5"></div>
+<p class="font-body text-xs text-on-surface-variant">Shift handover in 42m</p>
+</li>
+<li class="flex items-start gap-3">
+<div class="w-1 h-1 rounded-full bg-outline-variant mt-1.5"></div>
+<p class="font-body text-xs text-on-surface-variant">Medical triage prioritized</p>
+</li>
+</ul>
+</div>
+</aside>
+</main>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="fixed bottom-0 w-full bg-[#111318]/90 backdrop-blur-xl md:hidden flex justify-around items-center h-16 z-50 px-4 border-t border-outline-variant/10">
+<button class="flex flex-col items-center text-[#bfc7d4] active:scale-95 transition-transform">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-headline uppercase tracking-tighter">Command</span>
+</button>
+<button class="flex flex-col items-center text-[#9ecaff] active:scale-95 transition-transform">
+<span class="material-symbols-outlined">badge</span>
+<span class="text-[10px] font-headline uppercase tracking-tighter">Staff</span>
+</button>
+<button class="flex flex-col items-center text-[#bfc7d4] active:scale-95 transition-transform">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="text-[10px] font-headline uppercase tracking-tighter">Tools</span>
+</button>
+<button class="flex flex-col items-center text-[#bfc7d4] active:scale-95 transition-transform">
+<span class="material-symbols-outlined">history</span>
+<span class="text-[10px] font-headline uppercase tracking-tighter">Logs</span>
+</button>
+</nav>
+</body></html>

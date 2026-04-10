@@ -1,0 +1,113 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ─── Helper Functions ──────────────────────────────────────────────────
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.role == 'admin' ||
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin'
+      );
+    }
+
+    function isManagerOrAdmin() {
+      return isAuthenticated() && (
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['admin', 'manager']
+      );
+    }
+
+    function isStaffOrAbove() {
+      return isAuthenticated() && (
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['admin', 'manager', 'staff']
+      );
+    }
+
+    function isOwner(uid) {
+      return isAuthenticated() && request.auth.uid == uid;
+    }
+
+    function sameProperty(resourcePropertyId) {
+      return isAuthenticated()
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.propertyId == resourcePropertyId;
+    }
+
+    // ─── Users Collection ──────────────────────────────────────────────────
+    match /users/{uid} {
+      // Any authenticated user can read their own profile
+      allow read: if isOwner(uid);
+
+      // Staff / managers / admins can create their own profile on first login
+      allow create: if isOwner(uid);
+
+      // Users update their own non-privileged fields
+      allow update: if isOwner(uid)
+        && !request.resource.data.diff(resource.data).affectedKeys()
+            .hasAny(['role', 'propertyId']);
+
+      // Managers/admins can read all users in the same property
+      allow read:  if isManagerOrAdmin()
+        && resource.data.propertyId == get(/databases/$(database)/documents/users/$(request.auth.uid)).data.propertyId;
+
+      // Admins can write (assign roles, property) to users in same property
+      allow write: if isAdmin()
+        && resource.data.propertyId == get(/databases/$(database)/documents/users/$(request.auth.uid)).data.propertyId;
+
+      // Admins can delete
+      allow delete: if isAdmin();
+    }
+
+    // ─── Incidents Collection ──────────────────────────────────────────────
+    // (formerly emergencyEvents — used by the dashboard directly)
+    match /incidents/{incidentId} {
+      // Staff and above can read incidents for their property
+      allow read: if isStaffOrAbove() && sameProperty(resource.data.propertyId);
+
+      // Managers/admins can update incident status/assignment
+      allow update: if isManagerOrAdmin() && sameProperty(resource.data.propertyId);
+
+      // Creation/deletion only via Admin SDK (backend)
+      allow create, delete: if false;
+    }
+
+    // ─── Emergency Events (legacy alias kept for backend compatibility) ────
+    match /emergencyEvents/{eventId} {
+      allow read: if isStaffOrAbove() && sameProperty(resource.data.propertyId);
+      allow write: if false;
+    }
+
+    // ─── Properties Collection ─────────────────────────────────────────────
+    match /properties/{propertyId} {
+      allow read: if isAuthenticated()
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.propertyId == propertyId;
+      allow write: if isAdmin()
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.propertyId == propertyId;
+    }
+
+    // ─── Chat Messages ─────────────────────────────────────────────────────
+    match /chatMessages/{messageId} {
+      allow read:          if isAuthenticated();
+      allow create:        if isAuthenticated();
+      allow update, delete: if false;
+    }
+
+    // ─── Audit Log (immutable) ─────────────────────────────────────────────
+    match /auditLog/{logId} {
+      allow read:  if isAdmin();
+      allow write: if false;
+    }
+
+    // ─── FCM Tokens ────────────────────────────────────────────────────────
+    match /fcmTokens/{uid} {
+      allow read, write: if isOwner(uid);
+    }
+
+    // ─── Deny all other access ─────────────────────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

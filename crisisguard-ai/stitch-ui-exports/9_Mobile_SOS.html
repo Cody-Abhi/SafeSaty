@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CrisisGuard AI | SOS Gateway</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#0c0e13",
+                        "inverse-surface": "#e2e2e9",
+                        "on-surface-variant": "#bfc7d4",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed": "#261a00",
+                        "tertiary-fixed-dim": "#ffb4a9",
+                        "primary": "#9ecaff",
+                        "on-error": "#690005",
+                        "tertiary": "#ffb4a9",
+                        "secondary": "#ffdf9e",
+                        "on-background": "#e2e2e9",
+                        "on-tertiary-fixed-variant": "#930005",
+                        "primary-fixed-dim": "#9ecaff",
+                        "outline-variant": "#404752",
+                        "primary-fixed": "#d1e4ff",
+                        "on-secondary-container": "#6a4e00",
+                        "surface-variant": "#33353a",
+                        "on-primary": "#003258",
+                        "tertiary-container": "#ff5748",
+                        "secondary-container": "#fabd00",
+                        "background": "#111318",
+                        "surface-tint": "#9ecaff",
+                        "surface-dim": "#111318",
+                        "surface-bright": "#37393f",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "secondary-fixed-dim": "#fabd00",
+                        "on-tertiary-container": "#5e0002",
+                        "on-primary-fixed-variant": "#00497d",
+                        "outline": "#89919d",
+                        "secondary-fixed": "#ffdf9e",
+                        "inverse-on-surface": "#2e3036",
+                        "on-tertiary": "#690002",
+                        "on-surface": "#e2e2e9",
+                        "on-primary-container": "#002c4f",
+                        "surface-container": "#1e2025",
+                        "on-error-container": "#ffdad6",
+                        "primary-container": "#2196f3",
+                        "on-secondary": "#3f2e00",
+                        "surface-container-high": "#282a2f",
+                        "on-tertiary-fixed": "#410001",
+                        "tertiary-fixed": "#ffdad5",
+                        "error-container": "#93000a",
+                        "inverse-primary": "#0061a4",
+                        "surface-container-low": "#1a1b21",
+                        "on-primary-fixed": "#001d36",
+                        "surface-container-highest": "#33353a",
+                        "surface": "#111318"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Space Grotesk"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sos-glow {
+            box-shadow: 0 0 50px rgba(255, 46, 46, 0.3);
+        }
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30 min-h-screen overflow-x-hidden">
+<!-- Top Navigation Bar (Shared Component Logic) -->
+<nav class="fixed top-0 w-full bg-[#111318] flex items-center justify-between px-6 h-16 w-full z-50 shadow-[0px_0px_40px_0px_rgba(33,150,243,0.06)]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-400" data-icon="shield">shield</span>
+<span class="font-['Space_Grotesk'] font-bold tracking-tight text-lg font-black tracking-widest text-blue-400 uppercase">CrisisGuard AI</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="settings">settings</span>
+</div>
+</div>
+</nav>
+<main class="pt-20 pb-32 px-6 flex flex-col min-h-screen items-center justify-between">
+<!-- Status Bar -->
+<div class="w-full">
+<div class="bg-surface-container-low rounded-xl p-4 flex items-center justify-between shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] border-l-4 border-primary-container">
+<div class="flex flex-col">
+<span class="font-label text-[10px] uppercase tracking-[0.2em] text-on-surface-variant">System Intelligence</span>
+<span class="font-headline font-bold text-primary">SECURITY LEVEL: SECURE</span>
+</div>
+<div class="relative flex items-center justify-center">
+<div class="absolute w-3 h-3 bg-primary-container rounded-full opacity-40 animate-ping"></div>
+<div class="relative w-3 h-3 bg-primary-container rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Central SOS Action -->
+<div class="relative flex flex-col items-center justify-center my-12">
+<!-- Progress Ring Background -->
+<div class="absolute">
+<svg class="progress-ring" height="320" width="320">
+<circle class="text-surface-container-highest" cx="160" cy="160" fill="transparent" r="140" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-tertiary-container" cx="160" cy="160" fill="transparent" r="140" stroke="currentColor" stroke-dasharray="880" stroke-dashoffset="600" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+</div>
+<!-- Trigger Button -->
+<button class="relative w-64 h-64 rounded-full bg-gradient-to-tr from-[#FF2E2E] to-[#93000a] flex flex-col items-center justify-center sos-glow active:scale-95 transition-all duration-200">
+<span class="material-symbols-outlined text-6xl mb-2 text-white" data-icon="emergency" data-weight="fill" style="font-variation-settings: 'FILL' 1;">emergency</span>
+<span class="font-headline font-black text-xl text-white text-center leading-tight tracking-tighter px-8">HOLD TO TRIGGER SOS</span>
+</button>
+<!-- Status Metadata -->
+<div class="mt-8 text-center">
+<p class="font-label text-xs text-on-surface-variant tracking-widest uppercase">Emergency Protocol 104-B Active</p>
+<p class="font-body text-sm mt-1 opacity-70">Holding for 3 seconds alerts all local authorities</p>
+</div>
+</div>
+<!-- Quick Actions Grid -->
+<div class="w-full grid grid-cols-4 gap-3">
+<button class="flex flex-col items-center gap-2 bg-surface-container-low p-4 rounded-xl active:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-primary-container text-3xl" data-icon="medical_services">medical_services</span>
+<span class="font-label text-[10px] uppercase tracking-tighter text-on-surface-variant font-bold">Medical</span>
+</button>
+<button class="flex flex-col items-center gap-2 bg-surface-container-low p-4 rounded-xl active:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-primary-container text-3xl" data-icon="local_fire_department">local_fire_department</span>
+<span class="font-label text-[10px] uppercase tracking-tighter text-on-surface-variant font-bold">Fire</span>
+</button>
+<button class="flex flex-col items-center gap-2 bg-surface-container-low p-4 rounded-xl active:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-primary-container text-3xl" data-icon="security">security</span>
+<span class="font-label text-[10px] uppercase tracking-tighter text-on-surface-variant font-bold">Threat</span>
+</button>
+<button class="flex flex-col items-center gap-2 bg-surface-container-low p-4 rounded-xl active:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-primary-container text-3xl" data-icon="flood">flood</span>
+<span class="font-label text-[10px] uppercase tracking-tighter text-on-surface-variant font-bold">Disaster</span>
+</button>
+</div>
+<!-- Map Snippet -->
+<div class="w-full mt-8 overflow-hidden rounded-xl bg-surface-container-low relative h-32 group">
+<div class="absolute inset-0 opacity-40 grayscale contrast-125" data-alt="top-down dark tactical satellite map of urban city grid minimalist monochrome navy and black with subtle lines" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCaV1d8k05_IXEu1sVbBVDdNKn2hX5zJKgFFGqevUGmhx9pw8XLF_msYVy3zrjQ2ZM_SAQx6v4CFxZuiXoXgQKSmySj-jBM1wUfyT496HlrGbHuM4qKsuSnYGIJ04o1Fn8UzOTuQ3BopX1jOUjpn728Md7_b1qVxRZZNX3akwU7xyRbXH2QN9_cOtMNYGIxXtVvWhpz4bKMK22G6WTVONf-a_1I3y51pPsuf0qZ6c3c01BNPkv98jYTkmy0XETbfGW6gMSi_nIf5aqI')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+<!-- Pulse Dot -->
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="relative flex items-center justify-center">
+<div class="absolute w-12 h-12 bg-primary-container/20 rounded-full animate-ping"></div>
+<div class="relative w-4 h-4 bg-primary-container border-4 border-background rounded-full"></div>
+</div>
+</div>
+<!-- Location Label -->
+<div class="absolute bottom-3 left-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-xs text-primary" data-icon="location_on">location_on</span>
+<span class="font-label text-[10px] uppercase text-white font-bold tracking-widest">Sector 7-G | North Terminal</span>
+</div>
+<div class="absolute top-3 right-4">
+<span class="bg-surface-container-highest/80 backdrop-blur-md px-2 py-1 rounded text-[8px] font-label text-white uppercase border border-white/5">GPS Active: 0.8m Accuracy</span>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Shared Component Logic) -->
+<div class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-[#111318]/60 backdrop-blur-xl shadow-[0px_-4px_20px_0px_rgba(0,0,0,0.5)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-[#bfc7d4] opacity-50 transition-transform scale-95 active:scale-90 hover:text-blue-300" href="#">
+<span class="material-symbols-outlined" data-icon="radar">radar</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest mt-1">Status</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#bfc7d4] opacity-50 transition-transform scale-95 active:scale-90 hover:text-blue-300" href="#">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest mt-1">Intel</span>
+</a>
+<!-- ACTIVE TAB: Siren -->
+<a class="flex flex-col items-center justify-center bg-blue-500/10 text-blue-400 rounded-full px-4 py-1 transition-transform scale-95 active:scale-90 hover:text-blue-300" href="#">
+<span class="material-symbols-outlined" data-icon="emergency_home">emergency_home</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest mt-1">Siren</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#bfc7d4] opacity-50 transition-transform scale-95 active:scale-90 hover:text-blue-300" href="#">
+<span class="material-symbols-outlined" data-icon="lock">lock</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest mt-1">Secure</span>
+</a>
+</div>
+</body></html>

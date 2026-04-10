@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CrisisGuard AI | Tactical Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-container": "#6a4e00",
+                        "surface-container-highest": "#33353a",
+                        "on-tertiary-fixed-variant": "#930005",
+                        "outline-variant": "#404752",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "tertiary-container": "#ff5748",
+                        "secondary": "#ffdf9e",
+                        "inverse-on-surface": "#2e3036",
+                        "primary-fixed": "#d1e4ff",
+                        "primary": "#9ecaff",
+                        "on-tertiary-container": "#5e0002",
+                        "secondary-container": "#fabd00",
+                        "on-surface": "#e2e2e9",
+                        "on-secondary-fixed": "#261a00",
+                        "surface-container": "#1e2025",
+                        "on-primary-container": "#002c4f",
+                        "tertiary": "#ffb4a9",
+                        "tertiary-fixed-dim": "#ffb4a9",
+                        "on-background": "#e2e2e9",
+                        "surface-dim": "#111318",
+                        "inverse-primary": "#0061a4",
+                        "surface-bright": "#37393f",
+                        "on-primary": "#003258",
+                        "tertiary-fixed": "#ffdad5",
+                        "on-primary-fixed": "#001d36",
+                        "error-container": "#93000a",
+                        "background": "#111318",
+                        "surface-tint": "#9ecaff",
+                        "secondary-fixed-dim": "#fabd00",
+                        "on-error": "#690005",
+                        "primary-fixed-dim": "#9ecaff",
+                        "on-surface-variant": "#bfc7d4",
+                        "secondary-fixed": "#ffdf9e",
+                        "surface-container-lowest": "#0c0e13",
+                        "primary-container": "#2196f3",
+                        "on-secondary": "#3f2e00",
+                        "on-tertiary": "#690002",
+                        "surface-variant": "#33353a",
+                        "surface": "#111318",
+                        "surface-container-low": "#1a1b21",
+                        "on-tertiary-fixed": "#410001",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed-variant": "#00497d",
+                        "outline": "#89919d",
+                        "surface-container-high": "#282a2f",
+                        "inverse-surface": "#e2e2e9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Space Grotesk"]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #111318;
+            color: #e2e2e9;
+            font-family: 'Manrope', sans-serif;
+        }
+        .font-headline { font-family: 'Space Grotesk', sans-serif; }
+        .font-label { font-family: 'Space Grotesk', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tactical-glass {
+            background: rgba(51, 53, 58, 0.4);
+            backdrop-filter: blur(20px);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-[#111318]/80 backdrop-blur-xl shadow-[0_0_40px_rgba(33,150,243,0.06)]">
+<div class="flex justify-between items-center w-full px-8 h-20 max-w-[1920px] mx-auto">
+<div class="flex items-center gap-12">
+<span class="text-2xl font-bold tracking-tighter text-blue-400 uppercase font-headline">CRISISGUARD AI</span>
+<nav class="hidden md:flex gap-8">
+<a class="text-blue-400 border-b-2 border-blue-400 pb-1 font-label text-[0.75rem] tracking-widest hover:text-blue-300 transition-colors duration-300" href="#">INTEL</a>
+<a class="text-[#bfc7d4] font-medium font-label text-[0.75rem] tracking-widest hover:text-blue-300 transition-colors duration-300" href="#">OPS</a>
+<a class="text-[#bfc7d4] font-medium font-label text-[0.75rem] tracking-widest hover:text-blue-300 transition-colors duration-300" href="#">ANALYTICS</a>
+<a class="text-[#bfc7d4] font-medium font-label text-[0.75rem] tracking-widest hover:text-blue-300 transition-colors duration-300" href="#">ARCHIVE</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative flex items-center bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant/10">
+<span class="material-symbols-outlined text-on-surface-variant text-sm mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-xs font-label uppercase tracking-widest text-on-surface placeholder:text-outline-variant/50 w-48" placeholder="SECURE QUERY..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">settings</button>
+<div class="w-10 h-10 rounded-xl overflow-hidden border border-primary/20">
+<img alt="Commander Profile" class="w-full h-full object-cover" data-alt="close-up portrait of a high-ranking tactical commander in dark futuristic uniform with subtle blue lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdRIXZryJltAiwbL0HrOoLsgt9mFnrN65Zfks1z5RQdUFBhLP81oOADWyhsjJtRRNUm0EXCpvIzkdFAtPmcqNsGEm_XD6HAKcT6cAAzBGYmlWMvGvCKiDIpbw847qU2dShUsvP7dBTQ3PU5Huneijkiqv-rvB4XFutG9yselx_MOvb8molJGEswB5-SBa3JccLOn6F92-YhXnzQ2nsI6zlSWsHsckAvN6gbOwzSXqaXD9MzM1vbllP6BMC5Zfr4917b31LITXPbsFH"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 z-40 bg-[#111318] flex flex-col py-24 px-4 border-r border-outline-variant/5">
+<div class="mb-10 px-4">
+<h3 class="font-headline text-on-surface font-bold tracking-wider text-sm uppercase">SECTOR 07</h3>
+<p class="font-body text-[#bfc7d4] text-[0.7rem] uppercase tracking-tighter opacity-70">Operational Status: <span class="text-secondary-container">Active</span></p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-[#bfc7d4] hover:bg-[#1a1b21] rounded-xl transition-all group" href="#">
+<span class="material-symbols-outlined text-xl">terminal</span>
+<span class="font-label text-xs uppercase tracking-widest">Command</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#bfc7d4] hover:bg-[#1a1b21] rounded-xl transition-all group" href="#">
+<span class="material-symbols-outlined text-xl">radar</span>
+<span class="font-label text-xs uppercase tracking-widest">Signals</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-blue-400 font-bold border-l-4 border-blue-500 bg-blue-500/10 rounded-r-xl transition-all" href="#">
+<span class="material-symbols-outlined text-xl" data-weight="fill" style="font-variation-settings: 'FILL' 1;">crisis_alert</span>
+<span class="font-label text-xs uppercase tracking-widest">Threat Map</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#bfc7d4] hover:bg-[#1a1b21] rounded-xl transition-all group" href="#">
+<span class="material-symbols-outlined text-xl">inventory_2</span>
+<span class="font-label text-xs uppercase tracking-widest">Assets</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#bfc7d4] hover:bg-[#1a1b21] rounded-xl transition-all group" href="#">
+<span class="material-symbols-outlined text-xl">description</span>
+<span class="font-label text-xs uppercase tracking-widest">Logs</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 space-y-4">
+<button class="w-full py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary font-headline font-bold text-xs tracking-widest rounded-xl hover:opacity-90 transition-opacity uppercase">
+                INITIATE PROTOCOL
+            </button>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-[#bfc7d4] hover:bg-[#1a1b21] rounded-xl text-xs font-label transition-all" href="#">
+<span class="material-symbols-outlined text-lg">help_center</span>
+                    SUPPORT
+                </a>
+<a class="flex items-center gap-3 px-4 py-2 text-[#bfc7d4] hover:bg-[#1a1b21] rounded-xl text-xs font-label transition-all" href="#">
+<span class="material-symbols-outlined text-lg">logout</span>
+                    LOGOUT
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="pl-64 pt-24 min-h-screen">
+<div class="max-w-[1920px] mx-auto p-8 space-y-8">
+<!-- Dashboard Header Section -->
+<div class="flex justify-between items-end">
+<div>
+<span class="font-label text-[0.65rem] tracking-[0.3em] text-primary uppercase mb-2 block">System Analytics Cluster</span>
+<h1 class="font-headline text-4xl font-bold text-on-surface uppercase tracking-tight">Intelligence &amp; Ops <span class="text-outline-variant font-light">/ Dashboard</span></h1>
+</div>
+<div class="flex gap-4">
+<div class="flex flex-col items-end">
+<span class="font-label text-[0.6rem] text-on-surface-variant uppercase">Current Cycle</span>
+<span class="font-headline font-bold text-lg">24:00 Zulu</span>
+</div>
+</div>
+</div>
+<!-- Top Row: Metrics -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<!-- Highlighted KPI -->
+<div class="bg-surface-container-low p-6 rounded-xl border-l-4 border-primary shadow-[0_0_30px_rgba(158,202,255,0.03)] flex flex-col justify-between h-32">
+<span class="font-label text-[0.65rem] text-on-surface-variant uppercase tracking-widest">Avg Response Time</span>
+<div class="flex items-end justify-between">
+<span class="font-headline text-3xl font-bold text-[#00dbe9]">1.4s</span>
+<span class="material-symbols-outlined text-primary-container">bolt</span>
+</div>
+</div>
+<!-- Resolution Rate -->
+<div class="bg-surface-container-low p-6 rounded-xl flex flex-col justify-between h-32">
+<span class="font-label text-[0.65rem] text-on-surface-variant uppercase tracking-widest">Resolution Rate</span>
+<div class="flex items-end justify-between">
+<span class="font-headline text-3xl font-bold text-on-surface">98.2%</span>
+<span class="material-symbols-outlined text-secondary-container">verified</span>
+</div>
+</div>
+<!-- Total Staff -->
+<div class="bg-surface-container-low p-6 rounded-xl flex flex-col justify-between h-32">
+<span class="font-label text-[0.65rem] text-on-surface-variant uppercase tracking-widest">Total Staff Active</span>
+<div class="flex items-end justify-between">
+<span class="font-headline text-3xl font-bold text-on-surface">1,240</span>
+<span class="material-symbols-outlined text-on-surface-variant">groups</span>
+</div>
+</div>
+<!-- System Load -->
+<div class="bg-surface-container-low p-6 rounded-xl flex flex-col justify-between h-32">
+<span class="font-label text-[0.65rem] text-on-surface-variant uppercase tracking-widest">System Load</span>
+<div class="flex items-end justify-between">
+<span class="font-headline text-3xl font-bold text-on-surface">42%</span>
+<div class="w-24 h-1 bg-surface-container-highest rounded-full overflow-hidden mb-2">
+<div class="w-10 h-full bg-primary-container"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Middle Section: Asymmetric Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Large Central Glass Panel -->
+<div class="lg:col-span-8 tactical-glass rounded-xl p-8 border border-outline-variant/10 relative overflow-hidden">
+<div class="flex justify-between items-start mb-12">
+<div>
+<h2 class="font-headline text-xl font-bold uppercase tracking-widest">Incidents by Hour</h2>
+<p class="font-body text-xs text-on-surface-variant mt-1">24-hour tactical analysis protocol</p>
+</div>
+<div class="flex gap-2">
+<span class="w-2 h-2 rounded-full bg-[#00dbe9]"></span>
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>
+</div>
+</div>
+<!-- Stylized Bar Chart -->
+<div class="flex items-end justify-between h-64 w-full gap-2 px-2">
+<div class="w-full bg-surface-container-highest rounded-t-sm h-[20%]"></div>
+<div class="w-full bg-surface-container-highest rounded-t-sm h-[15%]"></div>
+<div class="w-full bg-surface-container-highest rounded-t-sm h-[30%]"></div>
+<div class="w-full bg-primary-container rounded-t-sm h-[45%]"></div>
+<div class="w-full bg-primary-container rounded-t-sm h-[55%]"></div>
+<div class="w-full bg-[#00dbe9] rounded-t-sm h-[85%] relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 text-[0.6rem] font-label text-[#00dbe9]">PEAK</div>
+</div>
+<div class="w-full bg-primary-container rounded-t-sm h-[65%]"></div>
+<div class="w-full bg-primary-container rounded-t-sm h-[40%]"></div>
+<div class="w-full bg-surface-container-highest rounded-t-sm h-[25%]"></div>
+<div class="w-full bg-surface-container-highest rounded-t-sm h-[20%]"></div>
+<div class="w-full bg-surface-container-highest rounded-t-sm h-[35%]"></div>
+<div class="w-full bg-primary-container rounded-t-sm h-[50%]"></div>
+<div class="w-full bg-primary-container rounded-t-sm h-[75%]"></div>
+<div class="w-full bg-primary-container rounded-t-sm h-[60%]"></div>
+<div class="w-full bg-surface-container-highest rounded-t-sm h-[45%]"></div>
+<div class="w-full bg-surface-container-highest rounded-t-sm h-[30%]"></div>
+<div class="w-full bg-surface-container-highest rounded-t-sm h-[25%]"></div>
+<div class="w-full bg-surface-container-highest rounded-t-sm h-[20%]"></div>
+<div class="w-full bg-surface-container-highest rounded-t-sm h-[15%]"></div>
+<div class="w-full bg-surface-container-highest rounded-t-sm h-[10%]"></div>
+<div class="w-full bg-primary-container rounded-t-sm h-[40%]"></div>
+<div class="w-full bg-[#00dbe9] rounded-t-sm h-[65%]"></div>
+<div class="w-full bg-primary-container rounded-t-sm h-[50%]"></div>
+<div class="w-full bg-surface-container-highest rounded-t-sm h-[30%]"></div>
+</div>
+<div class="flex justify-between mt-4 text-on-surface-variant font-label text-[0.6rem] opacity-50 px-2 uppercase tracking-tighter">
+<span>00:00</span>
+<span>06:00</span>
+<span>12:00</span>
+<span>18:00</span>
+<span>23:59</span>
+</div>
+</div>
+<!-- Secondary Panel: Operations Feed -->
+<div class="lg:col-span-4 bg-surface-container-low rounded-xl p-6 flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline text-sm font-bold uppercase tracking-widest">Live Feed</h2>
+<span class="text-[0.6rem] font-label text-tertiary px-2 py-0.5 rounded-full bg-tertiary-container/20">PRIORITY ALPHA</span>
+</div>
+<div class="flex-1 space-y-6 overflow-y-auto no-scrollbar max-h-[400px]">
+<div class="flex gap-4">
+<div class="w-1.5 h-1.5 rounded-full bg-[#00dbe9] mt-1.5 shrink-0"></div>
+<div>
+<p class="text-[0.7rem] font-label text-on-surface-variant uppercase tracking-tighter">14:02:45</p>
+<p class="text-sm font-body text-on-surface mt-0.5">Asset 'Sentinel-1' deployed to Sector 04 following seismic anomaly detection.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-1.5 h-1.5 rounded-full bg-secondary-container mt-1.5 shrink-0"></div>
+<div>
+<p class="text-[0.7rem] font-label text-on-surface-variant uppercase tracking-tighter">13:58:12</p>
+<p class="text-sm font-body text-on-surface mt-0.5">Automated containment breach protocol engaged in Storage Unit B7. Verification pending.</p>
+</div>
+</div>
+<div class="flex gap-4 opacity-60">
+<div class="w-1.5 h-1.5 rounded-full bg-on-surface-variant mt-1.5 shrink-0"></div>
+<div>
+<p class="text-[0.7rem] font-label text-on-surface-variant uppercase tracking-tighter">13:45:00</p>
+<p class="text-sm font-body text-on-surface mt-0.5">Routine scan of perimeter fence completed. 100% integrity maintained.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-1.5 h-1.5 rounded-full bg-tertiary mt-1.5 shrink-0"></div>
+<div>
+<p class="text-[0.7rem] font-label text-on-surface-variant uppercase tracking-tighter">13:32:11</p>
+<p class="text-sm font-body text-on-surface mt-0.5">Unauthorized encryption attempt blocked by AI Core. IP tracing initiated.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Section: Heatmap Module -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Heatmap Grid -->
+<div class="lg:col-span-12 bg-surface-container-low rounded-xl p-8 border border-outline-variant/5">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+<div>
+<h2 class="font-headline text-xl font-bold uppercase tracking-[0.2em]">Zone Risk Heatmap</h2>
+<p class="font-body text-xs text-on-surface-variant uppercase tracking-tighter opacity-70">Real-time threat assessment by structural segment</p>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary-container"></div>
+<span class="text-[0.6rem] font-label uppercase">Minimal</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-secondary-container"></div>
+<span class="text-[0.6rem] font-label uppercase">Moderate</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-tertiary-container"></div>
+<span class="text-[0.6rem] font-label uppercase">Critical</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-1 h-[400px]">
+<!-- Building Grid Representation -->
+<!-- Row 1 -->
+<div class="bg-primary-container/20 rounded-md border border-primary-container/30 relative flex items-center justify-center group overflow-hidden">
+<span class="text-[0.5rem] font-label opacity-40">A01</span>
+</div>
+<div class="bg-primary-container/40 rounded-md border border-primary-container/30 relative flex items-center justify-center">
+<span class="text-[0.5rem] font-label opacity-40">A02</span>
+</div>
+<div class="bg-secondary-container/60 rounded-md border border-secondary-container/30 relative flex items-center justify-center">
+<div class="absolute w-2 h-2 bg-secondary-container rounded-full animate-ping"></div>
+<span class="text-[0.5rem] font-label text-on-secondary-container font-bold">A03</span>
+</div>
+<div class="bg-primary-container/20 rounded-md border border-primary-container/30 flex items-center justify-center">
+<span class="text-[0.5rem] font-label opacity-40">A04</span>
+</div>
+<div class="bg-primary-container/10 rounded-md border border-primary-container/30 flex items-center justify-center">
+<span class="text-[0.5rem] font-label opacity-40">A05</span>
+</div>
+<div class="bg-primary-container/20 rounded-md border border-primary-container/30 flex items-center justify-center"></div>
+<div class="bg-tertiary-container/30 rounded-md border border-tertiary-container/40 flex items-center justify-center"></div>
+<div class="bg-tertiary-container/80 rounded-md border border-tertiary-container/40 relative flex items-center justify-center">
+<div class="absolute w-3 h-3 bg-white rounded-full animate-pulse"></div>
+</div>
+<div class="bg-tertiary-container/30 rounded-md border border-tertiary-container/40 flex items-center justify-center"></div>
+<div class="bg-primary-container/20 rounded-md border border-primary-container/30 flex items-center justify-center"></div>
+<div class="bg-primary-container/10 rounded-md border border-primary-container/30 flex items-center justify-center"></div>
+<div class="bg-primary-container/10 rounded-md border border-primary-container/30 flex items-center justify-center"></div>
+<!-- Repeat/Pattern for the rest of the grid -->
+<div class="col-span-12 grid grid-cols-12 gap-1 h-full">
+<!-- Generate several rows of tactical grid items -->
+<div class="bg-primary-container/10 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/10 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/10 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-secondary-container/40 rounded-md border border-secondary-container/10 h-16"></div>
+<div class="bg-secondary-container/40 rounded-md border border-secondary-container/10 h-16"></div>
+<div class="bg-primary-container/10 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/20 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/10 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/10 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/10 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/10 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/10 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/5 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/5 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/5 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/5 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-tertiary-container/20 rounded-md border border-tertiary-container/10 h-16"></div>
+<div class="bg-tertiary-container/40 rounded-md border border-tertiary-container/10 h-16 relative">
+<div class="absolute inset-0 bg-tertiary-container/20 animate-pulse"></div>
+</div>
+<div class="bg-tertiary-container/20 rounded-md border border-tertiary-container/10 h-16"></div>
+<div class="bg-primary-container/5 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/5 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/5 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/5 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/5 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/20 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/20 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/20 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/20 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/20 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/20 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-secondary-container/40 rounded-md border border-secondary-container/10 h-16 relative">
+<div class="absolute w-1.5 h-1.5 bg-white rounded-full top-2 right-2 animate-ping"></div>
+</div>
+<div class="bg-primary-container/20 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/20 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/20 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/20 rounded-md border border-primary-container/10 h-16"></div>
+<div class="bg-primary-container/20 rounded-md border border-primary-container/10 h-16"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Dashboard Footer -->
+<footer class="flex justify-between items-center py-8 border-t border-outline-variant/5">
+<div class="flex gap-12">
+<div class="flex flex-col">
+<span class="font-label text-[0.6rem] text-on-surface-variant uppercase">Quantum Link</span>
+<span class="font-headline text-xs font-bold text-primary uppercase">Secured</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label text-[0.6rem] text-on-surface-variant uppercase">Uptime</span>
+<span class="font-headline text-xs font-bold text-on-surface uppercase">99.999%</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="font-label text-[0.6rem] text-on-surface-variant uppercase tracking-widest">Global Watch Protocol v4.2.0</span>
+</div>
+</footer>
+</div>
+</main>
+</body></html>
